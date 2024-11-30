@@ -7,6 +7,8 @@ public enum GameEvent
     //Player
     OnPlayerStartMove,
     
+
+    
     //Game Management
     OnGameStart,
     OnGameOver,

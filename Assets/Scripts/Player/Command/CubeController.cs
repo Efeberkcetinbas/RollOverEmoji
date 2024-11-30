@@ -12,6 +12,8 @@ public class CubeController : MonoBehaviour
     private Vector2 startTouchPosition;
     private const float swipeThreshold = 50f;
 
+    private bool isRolling = false;
+
     private void Update()
     {
         HandleTouchInput();
@@ -19,6 +21,8 @@ public class CubeController : MonoBehaviour
 
     private void HandleTouchInput()
     {
+        if (isRolling) return; // Prevent input while rolling
+
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
@@ -36,7 +40,7 @@ public class CubeController : MonoBehaviour
                     if (swipeDelta.magnitude >= swipeThreshold)
                     {
                         Vector3 direction = GetSwipeDirection(swipeDelta);
-                        ExecuteCommand(new RollCommand(transform, direction, gridSize, rollSpeed));
+                        ExecuteCommand(new RollCommand(transform, direction, gridSize, rollSpeed, OnRollComplete));
                     }
                     break;
             }
@@ -57,28 +61,36 @@ public class CubeController : MonoBehaviour
 
     private void ExecuteCommand(ICommand command)
     {
+        isRolling = true; // Lock movement
         command.Execute();
         commandHistory.Push(command);
         redoStack.Clear(); // Clear redo stack after a new action
     }
 
+    private void OnRollComplete()
+    {
+        isRolling = false; // Unlock movement
+    }
+
     public void Undo()
     {
-        if (commandHistory.Count > 0)
-        {
-            ICommand lastCommand = commandHistory.Pop();
-            lastCommand.Undo();
-            redoStack.Push(lastCommand);
-        }
+        if (isRolling || commandHistory.Count == 0) return;
+
+        isRolling = true;
+        ICommand lastCommand = commandHistory.Pop();
+        lastCommand.Undo();
+        redoStack.Push(lastCommand);
+        OnRollComplete();
     }
 
     public void Redo()
     {
-        if (redoStack.Count > 0)
-        {
-            ICommand commandToRedo = redoStack.Pop();
-            commandToRedo.Redo();
-            commandHistory.Push(commandToRedo);
-        }
+        if (isRolling || redoStack.Count == 0) return;
+
+        isRolling = true;
+        ICommand commandToRedo = redoStack.Pop();
+        commandToRedo.Redo();
+        commandHistory.Push(commandToRedo);
+        OnRollComplete();
     }
 }

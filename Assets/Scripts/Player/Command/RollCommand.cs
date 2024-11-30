@@ -7,16 +7,18 @@ public class RollCommand : ICommand
     private readonly Vector3 direction;
     private readonly float gridSize;
     private readonly float rollSpeed;
+    private readonly System.Action onComplete;
 
     private Vector3 previousPosition;
     private Quaternion previousRotation;
 
-    public RollCommand(Transform cube, Vector3 direction, float gridSize, float rollSpeed)
+    public RollCommand(Transform cube, Vector3 direction, float gridSize, float rollSpeed, System.Action onComplete)
     {
         this.cube = cube;
         this.direction = direction;
         this.gridSize = gridSize;
         this.rollSpeed = rollSpeed;
+        this.onComplete = onComplete;
     }
 
     public void Execute()
@@ -48,8 +50,11 @@ public class RollCommand : ICommand
             angle += step;
             yield return null;
         }
-
+        //EventManager.Broadcast(GameEvent.OnUnlockMovement);
         SnapToGrid();
+
+        // Notify the controller that the roll is complete
+        onComplete?.Invoke();
     }
 
     private void SnapToGrid()
