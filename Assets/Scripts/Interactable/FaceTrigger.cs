@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FaceTrigger : Obstacleable
 {
     [SerializeField] private Image faceImage;
+    public EmojiType AssignedEmojiType  = EmojiType.None; // Enum for the face
 
 
 
@@ -24,16 +25,22 @@ public class FaceTrigger : Obstacleable
             if(triggered.spriteRenderer!=null && faceImage.sprite==null)
             {
                 faceImage.sprite=triggered.spriteRenderer.sprite;
+                triggered.gameObject.SetActive(false);
                 triggered.isInteract=true;
+                AssignedEmojiType = triggered.GetComponent<Emoji>().EmojiType;
+                EventManager.Broadcast(GameEvent.OnCheckMatch);
+                Debug.Log($"Assigned {AssignedEmojiType} to face '{gameObject.name}'");
             }
         }
         
     }
 
-    internal override void StopAction(TriggerControl triggered)
+    
+
+    public void ResetFace()
     {
-        if(triggered.isInteract)
-            triggered.gameObject.SetActive(false);
+        faceImage.sprite = null;  // Reset sprite
+        AssignedEmojiType = EmojiType.None; // Reset enum
     }
 
 }

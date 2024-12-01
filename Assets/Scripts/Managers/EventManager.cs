@@ -7,6 +7,8 @@ public enum GameEvent
     //Player
     OnPlayerStartMove,
     
+    //Match3
+    OnCheckMatch,
 
     
     //Game Management
