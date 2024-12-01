@@ -5,6 +5,9 @@ public class CubeController : MonoBehaviour
 {
     [SerializeField] private float gridSize = 1f;
     [SerializeField] private float rollSpeed = 5f;
+    [SerializeField] private float raycastDistance = 1.1f; // Raycast length for detection
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask obstacleLayer;
 
     private Stack<ICommand> commandHistory = new Stack<ICommand>();
     private Stack<ICommand> redoStack = new Stack<ICommand>();
@@ -40,7 +43,7 @@ public class CubeController : MonoBehaviour
                     if (swipeDelta.magnitude >= swipeThreshold)
                     {
                         Vector3 direction = GetSwipeDirection(swipeDelta);
-                        ExecuteCommand(new RollCommand(transform, direction, gridSize, rollSpeed, OnRollComplete));
+                        TryRoll(direction);
                     }
                     break;
             }
@@ -57,6 +60,18 @@ public class CubeController : MonoBehaviour
         {
             return swipeDelta.y > 0 ? Vector3.forward : Vector3.back;
         }
+    }
+
+    private void TryRoll(Vector3 direction)
+    {
+        if (!CanRoll(direction)) return; // Abort if the roll is invalid
+
+        ExecuteCommand(new RollCommand(transform, direction, gridSize, rollSpeed, OnRollComplete));
+    }
+
+    private bool CanRoll(Vector3 direction)
+    {
+        return EnvironmentChecker.IsValidMove(transform.position, direction, raycastDistance, groundLayer, obstacleLayer);
     }
 
     private void ExecuteCommand(ICommand command)

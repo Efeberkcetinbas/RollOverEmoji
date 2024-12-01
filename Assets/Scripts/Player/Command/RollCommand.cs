@@ -50,10 +50,8 @@ public class RollCommand : ICommand
             angle += step;
             yield return null;
         }
-        //EventManager.Broadcast(GameEvent.OnUnlockMovement);
-        SnapToGrid();
 
-        // Notify the controller that the roll is complete
+        SnapToGrid();
         onComplete?.Invoke();
     }
 
