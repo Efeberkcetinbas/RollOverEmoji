@@ -8,6 +8,7 @@ public class CubeController : MonoBehaviour
     [SerializeField] private float raycastDistance = 1.1f; // Raycast length for detection
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private GameData gameData;
 
     private Stack<ICommand> commandHistory = new Stack<ICommand>();
     private Stack<ICommand> redoStack = new Stack<ICommand>();
@@ -24,7 +25,7 @@ public class CubeController : MonoBehaviour
 
     private void HandleTouchInput()
     {
-        if (isRolling) return; // Prevent input while rolling
+        if (isRolling || !gameData.CanSwipe) return; // Prevent input while rolling
 
         if (Input.touchCount == 1)
         {

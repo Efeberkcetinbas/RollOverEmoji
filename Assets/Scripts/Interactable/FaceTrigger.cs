@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FaceTrigger : Obstacleable
-{
+{   
+    [Header("Sprites")]
     [SerializeField] private Image faceImage;
     [SerializeField] private Image UIsprite;
+    [SerializeField] private Image previewSprite;
+
+
     public EmojiType AssignedEmojiType  = EmojiType.None; // Enum for the face
 
     private WaitForSeconds waitForSeconds;
@@ -33,6 +37,7 @@ public class FaceTrigger : Obstacleable
             {
                 faceImage.sprite=triggered.spriteRenderer.sprite;
                 UIsprite.sprite=triggered.spriteRenderer.sprite;
+                previewSprite.sprite=triggered.spriteRenderer.sprite;
                 triggered.gameObject.SetActive(false);
                 triggered.isInteract=true;
                 AssignedEmojiType = triggered.GetComponent<Emoji>().EmojiType;
@@ -55,6 +60,7 @@ public class FaceTrigger : Obstacleable
     {
         faceImage.sprite = null;  // Reset sprite
         UIsprite.sprite=null;
+        previewSprite.sprite=null;
         AssignedEmojiType = EmojiType.None; // Reset enum
     }
 

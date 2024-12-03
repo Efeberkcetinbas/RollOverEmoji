@@ -13,5 +13,6 @@ public class GameData : ScriptableObject
     public int levelNumber;
 
     public bool isGameEnd=false;
+    public bool CanSwipe=false;
 
 }

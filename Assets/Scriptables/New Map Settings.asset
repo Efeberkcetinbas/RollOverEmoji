@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emojis:
   - emojiPrefab: {fileID: 7446708597073614335, guid: 92f9ee47ab118084d8233ea28085a49b, type: 3}
-    count: 6
+    count: 3
   - emojiPrefab: {fileID: 7354043164822717751, guid: 9a1129c0c30894b4a9a35ff5fba75f77, type: 3}
     count: 3
   - emojiPrefab: {fileID: 3456438391525403492, guid: a7ab5669d93fa054d96c6c37fff4ebcd, type: 3}
