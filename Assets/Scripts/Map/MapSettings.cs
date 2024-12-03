@@ -5,9 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Map/MapSettings")]
 public class MapSettings : ScriptableObject
 {
-    public Vector3 mapSize = new Vector3(10, 1, 10);
+    [Header("Emoji Settings")]
     public List<EmojiData> emojis = new List<EmojiData>();
+
+    [Header("Obstacle Settings")]
     public int obstacleCount = 5;
+
+    [Header("Debug Options")]
     public bool enableDebug = true;
 }
 

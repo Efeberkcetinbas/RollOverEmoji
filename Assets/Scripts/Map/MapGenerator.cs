@@ -8,17 +8,18 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] private MapSettings mapSettings;
 
     [Header("Prefabs")]
-    [SerializeField] private GameObject groundPrefab;
     [SerializeField] private GameObject obstaclePrefab;
 
     [Header("Debug Options")]
     [SerializeField] private GameObject debugPathMarker;
 
+    [Header("Ground Setup")]
+    [SerializeField] private List<Transform> groundTransforms;
+
     private Transform mapParent;
     private List<Vector3> groundPositions = new List<Vector3>();
     private List<Vector3> obstaclePositions = new List<Vector3>();
     private List<Vector3> emojiPositions = new List<Vector3>();
-    private List<Vector3> debugPath = new List<Vector3>();
     private List<Vector3> unreachablePositions = new List<Vector3>();
 
     public void GenerateMap()
@@ -29,24 +30,29 @@ public class MapGenerator : MonoBehaviour
         groundPositions.Clear();
         obstaclePositions.Clear();
         emojiPositions.Clear();
-        debugPath.Clear();
         unreachablePositions.Clear();
 
         Debug.Log("Starting map generation...");
 
-        // Generate ground first (this is critical for base setup)
-        GenerateGround();
+        // Collect ground positions
+        CollectGroundPositions();
 
-        // Validate settings AFTER ground generation
+        // Validate settings BEFORE placement
         if (!ValidateMapSettings())
         {
-            Debug.LogError("Map settings are invalid. Adjust settings in the MapSettings ScriptableObject.");
+            Debug.LogError("Map settings are invalid. Adjust emoji or obstacle counts or ground layout.");
             return;
         }
 
-        // Proceed to generate emojis and obstacles
+        // Place emojis and obstacles
         PlaceEmojis();
         PlaceObstacles();
+
+        // Validate map accessibility
+        if (!AreAllEmojisAccessible())
+        {
+            Debug.LogWarning("Some emojis are unreachable. Adjust ground or obstacle placement.");
+        }
 
         // Optional: Visualize debug information
         if (mapSettings.enableDebug)
@@ -55,6 +61,19 @@ public class MapGenerator : MonoBehaviour
         }
 
         Debug.Log("Map generation complete.");
+    }
+
+    private void CollectGroundPositions()
+    {
+        foreach (var ground in groundTransforms)
+        {
+            if (ground != null)
+            {
+                groundPositions.Add(ground.position);
+            }
+        }
+
+        Debug.Log($"Ground collection complete. Total ground tiles: {groundPositions.Count}");
     }
 
     private bool ValidateMapSettings()
@@ -67,38 +86,11 @@ public class MapGenerator : MonoBehaviour
 
         if (totalObjects > groundPositions.Count)
         {
-            Debug.Log(totalObjects + "G" + groundPositions.Count);
             Debug.LogError("Too many objects for the available ground. Reduce emoji or obstacle counts.");
             return false;
         }
 
         return true;
-    }
-
-    private void GenerateGround()
-    {
-        // Check map size dimensions
-        if (mapSettings.mapSize.x <= 0 || mapSettings.mapSize.z <= 0)
-        {
-            Debug.LogError("Map size dimensions are invalid. Ensure mapSize.x and mapSize.z are greater than zero.");
-            return;
-        }
-
-        for (int x = 0; x < mapSettings.mapSize.x; x++)
-        {
-            for (int z = 0; z < mapSettings.mapSize.z; z++)
-            {
-                Vector3 position = new Vector3(x, 0, z);
-
-                // Instantiate ground tile
-                var ground = Instantiate(groundPrefab, position, Quaternion.identity, mapParent);
-
-                // Ensure it's correctly added to the map structure
-                groundPositions.Add(position);
-            }
-        }
-
-        Debug.Log($"Ground generation complete. Generated {groundPositions.Count} tiles.");
     }
 
     private void PlaceEmojis()
@@ -113,7 +105,7 @@ public class MapGenerator : MonoBehaviour
 
                 if (position != Vector3.zero && !emojiPositions.Contains(position))
                 {
-                    Instantiate(emojiData.emojiPrefab, position + Vector3.up * 0.5f, Quaternion.identity, mapParent);
+                    Instantiate(emojiData.emojiPrefab, position + Vector3.up * 0.3f, Quaternion.identity, mapParent);
                     emojiPositions.Add(position);
                     placedCount++;
                 }
@@ -124,52 +116,51 @@ public class MapGenerator : MonoBehaviour
     private void PlaceObstacles()
     {
         int placedCount = 0;
-        int maxAttempts = 50;
+        int maxAttempts = 100; // Prevent infinite loops
 
-        while (placedCount < mapSettings.obstacleCount)
+        while (placedCount < mapSettings.obstacleCount && maxAttempts > 0)
         {
-            Vector3 position = GetRandomPosition(false);
-            if (position == Vector3.zero) break;
+            maxAttempts--;
 
-            if (IsMapAccessibleAfterAddingObstacle(position))
+            // Get a unique random position
+            Vector3 position = GetRandomPosition(false);
+
+            if (position == Vector3.zero) continue; // Skip invalid positions
+
+            // Ensure no duplicate and map remains accessible
+            if (!obstaclePositions.Contains(position) && IsMapAccessibleAfterAddingObstacle(position))
             {
-                Instantiate(obstaclePrefab, position + Vector3.up * 0.5f, Quaternion.identity, mapParent);
+                Instantiate(obstaclePrefab, position + Vector3.up * 0.85f, Quaternion.identity, mapParent);
                 obstaclePositions.Add(position);
                 placedCount++;
             }
-            else
-            {
-                maxAttempts--;
-                if (maxAttempts <= 0)
-                {
-                    Debug.LogWarning("Failed to place all obstacles within attempt limit.");
-                    break;
-                }
-            }
+        }
+
+        if (placedCount < mapSettings.obstacleCount)
+        {
+            Debug.LogWarning($"Could only place {placedCount} out of {mapSettings.obstacleCount} obstacles.");
         }
     }
 
     private Vector3 GetRandomPosition(bool avoidOccupied)
     {
         int maxAttempts = 100;
-        int attempts = 0;
         Vector3 position;
 
-        do
+        for (int attempts = 0; attempts < maxAttempts; attempts++)
         {
             position = groundPositions[Random.Range(0, groundPositions.Count)];
-            attempts++;
 
-            if (attempts >= maxAttempts)
+            bool isOccupied = emojiPositions.Contains(position) || obstaclePositions.Contains(position);
+
+            if (!avoidOccupied || !isOccupied)
             {
-                Debug.LogWarning("Max attempts reached while finding a random position.");
-                return Vector3.zero;
+                return position;
             }
         }
-        while ((avoidOccupied && (emojiPositions.Contains(position) || obstaclePositions.Contains(position))) ||
-               (!groundPositions.Contains(position)));
 
-        return position;
+        Debug.LogWarning("Max attempts reached while finding a random position.");
+        return Vector3.zero; // Indicate failure
     }
 
     private bool IsMapAccessibleAfterAddingObstacle(Vector3 obstaclePosition)
@@ -187,7 +178,7 @@ public class MapGenerator : MonoBehaviour
         Queue<Vector3> queue = new Queue<Vector3>();
         HashSet<Vector3> visited = new HashSet<Vector3>();
 
-        Vector3 startPosition = new Vector3(0, 0, 0);
+        Vector3 startPosition = groundPositions[0];
         queue.Enqueue(startPosition);
         visited.Add(startPosition);
 
@@ -231,23 +222,10 @@ public class MapGenerator : MonoBehaviour
 
     private void VisualizeDebugInfo()
     {
-        foreach (var pos in debugPath)
-        {
-            Instantiate(debugPathMarker, pos + Vector3.up * 0.5f, Quaternion.identity, mapParent);
-        }
-
         foreach (var pos in unreachablePositions)
         {
             var marker = Instantiate(debugPathMarker, pos + Vector3.up * 0.5f, Quaternion.identity, mapParent);
             marker.GetComponent<Renderer>().material.color = Color.red;
         }
-    }
-
-    private void DebugMapState(string phase)
-    {
-        Debug.Log($"{phase}:");
-        Debug.Log($"Ground Positions: {groundPositions.Count}");
-        Debug.Log($"Obstacle Positions: {obstaclePositions.Count}");
-        Debug.Log($"Emoji Positions: {emojiPositions.Count}");
     }
 }

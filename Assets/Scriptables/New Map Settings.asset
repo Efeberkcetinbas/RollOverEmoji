@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d86e9a37d716d4e81debca4ebfdabf, type: 3}
   m_Name: New Map Settings
   m_EditorClassIdentifier: 
-  mapSize: {x: 5, y: 1, z: 8}
   emojis:
   - emojiPrefab: {fileID: 7446708597073614335, guid: 92f9ee47ab118084d8233ea28085a49b, type: 3}
     count: 6
@@ -20,5 +19,5 @@ MonoBehaviour:
     count: 3
   - emojiPrefab: {fileID: 3456438391525403492, guid: a7ab5669d93fa054d96c6c37fff4ebcd, type: 3}
     count: 3
-  obstacleCount: 5
+  obstacleCount: 3
   enableDebug: 1

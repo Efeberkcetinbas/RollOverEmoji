@@ -59,7 +59,7 @@ public class RollCommand : ICommand
     {
         cube.position = new Vector3(
             Mathf.Round(cube.position.x / gridSize) * gridSize,
-            Mathf.Round(cube.position.y / gridSize) * gridSize,
+            cube.position.y,
             Mathf.Round(cube.position.z / gridSize) * gridSize
         );
     }
