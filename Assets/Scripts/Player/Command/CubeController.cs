@@ -25,7 +25,7 @@ public class CubeController : MonoBehaviour
 
     private void HandleTouchInput()
     {
-        if (isRolling || !gameData.CanSwipe) return; // Prevent input while rolling
+        if (isRolling || !gameData.CanSwipe || gameData.isPreviewCube) return; // Prevent input while rolling
 
         if (Input.touchCount == 1)
         {

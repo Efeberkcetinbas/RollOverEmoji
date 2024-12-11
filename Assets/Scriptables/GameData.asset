@@ -18,3 +18,4 @@ MonoBehaviour:
   levelNumber: 0
   isGameEnd: 0
   CanSwipe: 1
+  isPreviewCube: 0

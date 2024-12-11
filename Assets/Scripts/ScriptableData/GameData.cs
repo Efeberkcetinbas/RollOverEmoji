@@ -14,5 +14,6 @@ public class GameData : ScriptableObject
 
     public bool isGameEnd=false;
     public bool CanSwipe=false;
+    public bool isPreviewCube=false;
 
 }

@@ -8,7 +8,7 @@ public class FaceTrigger : Obstacleable
     [Header("Sprites")]
     [SerializeField] private Image faceImage;
     [SerializeField] private Image UIsprite;
-    [SerializeField] private Image previewSprite;
+    [SerializeField] private SpriteRenderer previewSprite;
 
 
     public EmojiType AssignedEmojiType  = EmojiType.None; // Enum for the face

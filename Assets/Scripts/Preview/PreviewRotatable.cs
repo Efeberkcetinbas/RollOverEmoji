@@ -1,68 +1,135 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PreviewRotatable : MonoBehaviour
 {
-    [SerializeField] private InputAction pressed,axis;
-    [SerializeField] private float speed;
-    [SerializeField] private bool inverted;
+    [SerializeField] private float rotationSpeed = 10f; // Speed of rotation animation
+    [SerializeField] private Collider cubeCollider,previewCubeCollider;
     [SerializeField] private GameData gameData;
-    [SerializeField] private Collider cubeCollider;
 
-    private Vector2 rotation;
-    private bool rotateAllowed;
-    private Transform cam;
+    private Vector2 startTouchPosition;
+    private Vector2 endTouchPosition;
 
-    private void Awake()
+    
+    private bool isRotating = false;
+
+    /*private void Update()
     {
-        cam=Camera.main.transform;
-        pressed.Enable();
-        axis.Enable();
-        pressed.performed += _ => {StartCoroutine(Rotate());};
-        pressed.canceled += _ => {StartCoroutine(CancelIt()); };
-        axis.performed += context => {rotation = context.ReadValue<Vector2>();}; 
-    }
+        HandleSwipe();
+    }*/
 
-    private IEnumerator Rotate()
+    private void HandleSwipe()
     {
-        if(CheckTouchPreview())
+        //if (isRotating || !CheckTouchPreview()) return;
+        if (isRotating) return;
+        
+        if (Input.touchCount > 0)
         {
-            rotateAllowed=true;
-            gameData.CanSwipe=false;
-            while(rotateAllowed)
+            Touch touch = Input.GetTouch(0);
+            CheckTouchPreview(touch.position);
+        }
+
+        if(gameData.isPreviewCube)
+        {
+            if (Input.touchCount > 0)
             {
-                //apply rotation
-                rotation*=speed;
-                transform.Rotate(Vector3.up*(inverted?1:-1),rotation.x,Space.World);
-                transform.Rotate(cam.right * (inverted? 1:-1),rotation.y,Space.World);
-                yield return null;
+                Touch touch = Input.GetTouch(0);
+
+                switch (touch.phase)
+                {
+                    case TouchPhase.Began:
+                        startTouchPosition = touch.position;
+                        break;
+
+                    case TouchPhase.Ended:
+                        endTouchPosition = touch.position;
+                        DetectSwipe();
+                        break;
+                }
             }
         }
+        else
+            return;
     }
 
-    private IEnumerator CancelIt()
+    private void DetectSwipe()
     {
-        yield return null;
-        rotateAllowed=false;
-        gameData.CanSwipe=true;
+        Vector2 swipeDirection = endTouchPosition - startTouchPosition;
+
+        if (swipeDirection.magnitude < 1f) return; // Ignore small swipes (adjust threshold if needed)
+
+        swipeDirection.Normalize();
+
+        if (Mathf.Abs(swipeDirection.x) > Mathf.Abs(swipeDirection.y))
+        {
+            // Horizontal swipe
+            if (swipeDirection.x > 0) StartRotation(Vector3.up, -90); // Swipe right
+            else StartRotation(Vector3.up, 90); // Swipe left
+        }
+        else
+        {
+            // Vertical swipe
+            if (swipeDirection.y > 0) StartRotation(Vector3.right, 90); // Swipe up
+            else StartRotation(Vector3.right, -90); // Swipe down
+        }
     }
 
-    private bool CheckTouchPreview()
+    private void StartRotation(Vector3 axis, float angle)
     {
-        Vector2 touchPosition = Input.mousePosition; // For desktop, this will work with a mouse
-        if (Input.touchSupported && Input.touchCount > 0) // For mobile touch input
-        {
-            touchPosition = Input.GetTouch(0).position;
-        }
-        Ray ray = Camera.main.ScreenPointToRay(touchPosition);
-        RaycastHit hit;
+        if (isRotating) return;
 
-        if (Physics.Raycast(ray, out hit))
+        StartCoroutine(RotateCube(axis, angle));
+    }
+
+    private IEnumerator RotateCube(Vector3 axis, float angle)
+    {
+        isRotating = true;
+        gameData.CanSwipe = false;
+
+        Quaternion startRotation = transform.rotation;
+        Quaternion endRotation = Quaternion.AngleAxis(angle, axis) * startRotation;
+
+        float time = 0f;
+        while (time < 1f)
         {
-            return hit.collider == cubeCollider;
+            time += Time.deltaTime * rotationSpeed;
+            transform.rotation = Quaternion.Slerp(startRotation, endRotation, time);
+            yield return null;
         }
-        return false;
+
+        transform.rotation = endRotation;
+        isRotating = false;
+        //gameData.CanSwipe = true;
+    }
+
+    private void CheckTouchPreview(Vector2 touchPosition)
+    {
+        float screenHeight = Screen.height;
+        float y = touchPosition.y;
+
+        if (y > screenHeight * (2f / 3f))
+        {
+            // Top Section
+            gameData.isPreviewCube = true;
+        }
+        else if (y > screenHeight * (1f / 3f))
+        {
+            // Middle Section
+            gameData.isPreviewCube = false;
+            gameData.CanSwipe=true;
+        }
+        else
+        {
+            // Bottom Section
+            gameData.isPreviewCube = false;
+            // Optional: You can handle incremental section logic here
+        }
+    }
+
+    private IEnumerator SetPreview(bool val)
+    {
+        yield return new WaitForSeconds(0.5f);
+        gameData.isPreviewCube=val;
     }
 }
