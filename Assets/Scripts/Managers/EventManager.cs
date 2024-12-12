@@ -12,6 +12,7 @@ public enum GameEvent
 
     //Helper
     OnCleanCube,
+    OnCollect3Emoji,
 
     
     //Game Management

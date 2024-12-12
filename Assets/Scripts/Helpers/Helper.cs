@@ -8,4 +8,9 @@ public class Helper : MonoBehaviour
     {
         EventManager.Broadcast(GameEvent.OnCleanCube);
     }
+
+    public void Collect3Emoji()
+    {
+        EventManager.Broadcast(GameEvent.OnCollect3Emoji);
+    }
 }

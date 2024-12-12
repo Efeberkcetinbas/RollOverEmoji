@@ -6,7 +6,5 @@ public class MapManager : MonoBehaviour
 {
     public List<GameObject> Emojis=new List<GameObject>();
 
-    
-
     //Reset OnNextLevel
 }
