@@ -10,6 +10,10 @@ public enum GameEvent
     //Match3
     OnCheckMatch,
 
+    //Helper
+    OnCleanCube,
+    OnSetInteract,
+
     
     //Game Management
     OnGameStart,

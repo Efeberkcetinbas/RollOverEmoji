@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class MapGenerator : MonoBehaviour
 {
+    [Header("Data")]
+    [SerializeField] private GameData gameData;
+
     [Header("Map Settings")]
     [SerializeField] private MapSettings mapSettings;
 
@@ -62,6 +66,8 @@ public class MapGenerator : MonoBehaviour
 
         Debug.Log("Map generation complete.");
     }
+
+    
 
     private void CollectGroundPositions()
     {

@@ -15,7 +15,6 @@ public class FaceTrigger : Obstacleable
 
     private WaitForSeconds waitForSeconds;
 
-
     public FaceTrigger()
     {
         canStay=false;
@@ -25,6 +24,16 @@ public class FaceTrigger : Obstacleable
     private void Start()
     {
         waitForSeconds=new WaitForSeconds(.5f);
+    }
+
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnCleanCube,OnCleanCube);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnCleanCube,OnCleanCube);
     }
 
     
@@ -62,6 +71,12 @@ public class FaceTrigger : Obstacleable
         UIsprite.sprite=null;
         previewSprite.sprite=null;
         AssignedEmojiType = EmojiType.None; // Reset enum
+    }
+
+
+    private void OnCleanCube()
+    {
+        ResetFace();
     }
 
 }

@@ -10,6 +10,7 @@ public enum EmojiType
     Sad,
     Cool,
     Devil,
+    Angry,
     Joker,
     
     // Add more types as needed

@@ -42,6 +42,8 @@ public class MatchChecker : MonoBehaviour
                 HandleMatch(match.Value); // Handle matched faces
             }
         }
+
+        CheckForPotentialMatches();
     }
 
     private void HandleMatch(List<FaceTrigger> matchingFaces)
@@ -54,5 +56,50 @@ public class MatchChecker : MonoBehaviour
         }
 
         // Optionally trigger additional effects or animations here
+    }
+
+    private void CheckForPotentialMatches()
+    {
+        Dictionary<EmojiType, int> emojiCounts = new Dictionary<EmojiType, int>();
+        int emptyFacesCount = 0;
+
+        // Count assigned emoji types and empty faces
+        foreach (FaceTrigger face in cubeFaces)
+        {
+            if (face.AssignedEmojiType == EmojiType.None)
+            {
+                emptyFacesCount++;
+            }
+            else
+            {
+                if (!emojiCounts.ContainsKey(face.AssignedEmojiType))
+                {
+                    emojiCounts[face.AssignedEmojiType] = 0;
+                }
+
+                emojiCounts[face.AssignedEmojiType]++;
+            }
+        }
+
+        // Check if any emoji type can form a match-3
+        foreach (var emojiCount in emojiCounts)
+        {
+            int totalPossible = emojiCount.Value + emptyFacesCount;
+            if (totalPossible >= 3)
+            {
+                Debug.Log($"Possible to form a match-3 for {emojiCount.Key}");
+                return; // No need to check further, at least one match-3 is possible
+            }
+        }
+
+        // Also consider if all empty faces could form a match for a single new emoji type
+        if (emptyFacesCount >= 3)
+        {
+            Debug.Log("Possible to form a match-3 using all empty faces.");
+        }
+        else
+        {
+            Debug.Log("Fail: No possible way to form a match-3.");
+        }
     }
 }
