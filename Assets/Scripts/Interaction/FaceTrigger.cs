@@ -15,6 +15,9 @@ public class FaceTrigger : Obstacleable
 
     private WaitForSeconds waitForSeconds;
 
+    public GameObject tempEmoji;
+
+
 
     public FaceTrigger()
     {
@@ -48,6 +51,7 @@ public class FaceTrigger : Obstacleable
                 faceImage.sprite=triggered.spriteRenderer.sprite;
                 UIsprite.sprite=triggered.spriteRenderer.sprite;
                 previewSprite.sprite=triggered.spriteRenderer.sprite;
+                tempEmoji=triggered.gameObject;
                 triggered.gameObject.SetActive(false);
                 triggered.isInteract=true;
                 AssignedEmojiType = triggered.GetComponent<Emoji>().EmojiType;
@@ -71,13 +75,21 @@ public class FaceTrigger : Obstacleable
         faceImage.sprite = null;  // Reset sprite
         UIsprite.sprite=null;
         previewSprite.sprite=null;
+        tempEmoji=null;
         AssignedEmojiType = EmojiType.None; // Reset enum
     }
 
 
     private void OnCleanCube()
     {
+        if(AssignedEmojiType!=EmojiType.None)
+        {
+            tempEmoji.SetActive(true);
+            tempEmoji.GetComponent<TriggerControl>().isInteract=false;
+        }
+
         ResetFace();
+
     }
 
 }

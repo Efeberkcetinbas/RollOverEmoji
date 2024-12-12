@@ -12,7 +12,6 @@ public enum GameEvent
 
     //Helper
     OnCleanCube,
-    OnSetInteract,
 
     
     //Game Management
