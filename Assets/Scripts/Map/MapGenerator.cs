@@ -120,9 +120,9 @@ public class MapGenerator : MonoBehaviour
 
                 if (position != Vector3.zero && !emojiPositions.Contains(position))
                 {
-                    Instantiate(emojiData.emojiPrefab, position + Vector3.up * 0.3f, Quaternion.identity, mapParent);
+                    GameObject newEmoji=Instantiate(emojiData.emojiPrefab, position + Vector3.up * 0.3f, Quaternion.identity, mapParent);
                     emojiPositions.Add(position);
-                    mapManager.Emojis.Add(emojiData.emojiPrefab);
+                    mapManager.Emojis.Add(newEmoji);
                     placedCount++;
                 }
             }
