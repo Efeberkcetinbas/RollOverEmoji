@@ -5,6 +5,7 @@ using UnityEngine;
 public class MatchChecker : MonoBehaviour
 {
     [SerializeField] private List<FaceTrigger> cubeFaces; // Assign all cube face triggers in the Inspector
+    [SerializeField] private GameData gameData;
 
     private void OnEnable()
     {
@@ -55,7 +56,18 @@ public class MatchChecker : MonoBehaviour
             face.ResetFace(); // Reset face sprite and enum
         }
 
+        CheckForEmojiNumber();
+
         // Optionally trigger additional effects or animations here
+    }
+
+    private void CheckForEmojiNumber()
+    {
+        gameData.levelEmojiCount-=3;
+        if(gameData.levelEmojiCount<=0)
+        {
+            Debug.Log("SUCCESS");
+        }
     }
 
     private void CheckForPotentialMatches()

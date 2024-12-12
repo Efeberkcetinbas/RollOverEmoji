@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<GameObject> Emojis=new List<GameObject>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //Reset OnNextLevel
 }

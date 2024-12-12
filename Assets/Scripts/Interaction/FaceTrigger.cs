@@ -15,6 +15,7 @@ public class FaceTrigger : Obstacleable
 
     private WaitForSeconds waitForSeconds;
 
+
     public FaceTrigger()
     {
         canStay=false;

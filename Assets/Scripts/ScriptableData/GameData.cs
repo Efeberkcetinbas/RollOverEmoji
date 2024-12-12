@@ -11,6 +11,7 @@ public class GameData : ScriptableObject
     public int increaseScore;
     public int levelIndex;
     public int levelNumber;
+    public int levelEmojiCount;
 
     public bool isGameEnd=false;
     public bool CanSwipe=false;

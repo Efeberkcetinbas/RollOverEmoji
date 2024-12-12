@@ -26,6 +26,14 @@ public class MapGenerator : MonoBehaviour
     private List<Vector3> emojiPositions = new List<Vector3>();
     private List<Vector3> unreachablePositions = new List<Vector3>();
 
+    private MapManager mapManager;
+
+
+    private void Start()
+    {
+        mapManager=FindObjectOfType<MapManager>();
+    }
+
     public void GenerateMap()
     {
         if (mapParent != null) Destroy(mapParent.gameObject); // Clear old map
@@ -65,6 +73,7 @@ public class MapGenerator : MonoBehaviour
         }
 
         Debug.Log("Map generation complete.");
+        gameData.levelEmojiCount=mapManager.Emojis.Count;
     }
 
     
@@ -113,6 +122,7 @@ public class MapGenerator : MonoBehaviour
                 {
                     Instantiate(emojiData.emojiPrefab, position + Vector3.up * 0.3f, Quaternion.identity, mapParent);
                     emojiPositions.Add(position);
+                    mapManager.Emojis.Add(emojiData.emojiPrefab);
                     placedCount++;
                 }
             }
