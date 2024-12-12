@@ -10,31 +10,33 @@ public class UIManager : MonoBehaviour
     [Header("Scene Texts")]
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI levelText;
+    
 
-    [Header("Scene Incremental Panel")]
-    [SerializeField] private List<Button> specialButtons=new List<Button>();
+    [Header("Move Texts")]
+    [SerializeField] private TextMeshProUGUI moveText;
+    [SerializeField] private TextMeshProUGUI totalMoveText;
 
     [Header("DATA'S")]
     public GameData gameData;
-    public PlayerData playerData;
 
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnUIUpdate, OnUIUpdate);
-        EventManager.AddHandler(GameEvent.OnPlayerStartMove, OnPlayerStartMove);
-        EventManager.AddHandler(GameEvent.OnNextLevel, OnNextLevel);
-        EventManager.AddHandler(GameEvent.OnRestartLevel, OnRestartLevel);
         EventManager.AddHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
+
+        //Move
+        EventManager.AddHandler(GameEvent.OnMoveUI,OnMoveUI);
+        EventManager.AddHandler(GameEvent.OnTotalMoveUI,OnTotalMoveUI);
         
         
     }
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnUIUpdate, OnUIUpdate);
-        EventManager.RemoveHandler(GameEvent.OnPlayerStartMove, OnPlayerStartMove);
-        EventManager.RemoveHandler(GameEvent.OnNextLevel, OnNextLevel);
-        EventManager.RemoveHandler(GameEvent.OnRestartLevel, OnRestartLevel);
         EventManager.RemoveHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
+
+        EventManager.RemoveHandler(GameEvent.OnMoveUI,OnMoveUI);
+        EventManager.RemoveHandler(GameEvent.OnTotalMoveUI,OnTotalMoveUI);
     }
 
     
@@ -48,32 +50,21 @@ public class UIManager : MonoBehaviour
     {
         levelText.SetText("LEVEL " + (gameData.levelNumber+1).ToString());
     }
-   
+    
+    private void OnMoveUI()
+    {
+        moveText.SetText("Move " + gameData.moveNumber.ToString());
+    }
+
+    private void OnTotalMoveUI()
+    {
+        totalMoveText.SetText(gameData.totalMoveNumber.ToString());
+    }
 
     
-    private void OnPlayerStartMove()
-    {
-        CheckButtonInteractability(false);
-    }
-
-    private void OnNextLevel()
-    {
-        CheckButtonInteractability(true);
-    }
-
-    private void OnRestartLevel()
-    {
-        CheckButtonInteractability(true);
-    }
+    
 
 
-    private void CheckButtonInteractability(bool val)
-    {
-        for (int i = 0; i < specialButtons.Count; i++)
-        {
-            specialButtons[i].interactable=val;
-        }
-    }
-
+    
     
 }

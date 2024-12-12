@@ -68,6 +68,10 @@ public class CubeController : MonoBehaviour
         if (!CanRoll(direction)) return; // Abort if the roll is invalid
 
         ExecuteCommand(new RollCommand(transform, direction, gridSize, rollSpeed, OnRollComplete));
+        gameData.moveNumber++;
+        Debug.Log("MOVEMENT START");
+        //EventManager.Broadcast(GameEvent.OnCubeRollingStart);
+        EventManager.Broadcast(GameEvent.OnMoveUI);
     }
 
     private bool CanRoll(Vector3 direction)
@@ -86,6 +90,8 @@ public class CubeController : MonoBehaviour
     private void OnRollComplete()
     {
         isRolling = false; // Unlock movement
+        Debug.Log("MOVEMENT END");
+        //EventManager.Broadcast(GameEvent.OnCubeRollingEnd);
     }
 
     public void Undo()

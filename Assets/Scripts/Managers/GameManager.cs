@@ -6,7 +6,6 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
     public GameData gameData;
-    public PlayerData playerData;
 
 
     private WaitForSeconds waitForSeconds;

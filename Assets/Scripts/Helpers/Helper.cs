@@ -13,4 +13,12 @@ public class Helper : MonoBehaviour
     {
         EventManager.Broadcast(GameEvent.OnCollect3Emoji);
     }
+
+
+    //Will Removed
+
+    public void SetTotalMove()
+    {
+        EventManager.Broadcast(GameEvent.OnSetTotalMove);
+    }
 }

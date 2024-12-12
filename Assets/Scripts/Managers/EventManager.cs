@@ -5,7 +5,7 @@ using UnityEngine;
 public enum GameEvent
 {
     //Player
-    OnPlayerStartMove,
+    
     
     //Match3
     OnCheckMatch,
@@ -13,6 +13,13 @@ public enum GameEvent
     //Helper
     OnCleanCube,
     OnCollect3Emoji,
+
+    //Move
+    OnSetTotalMove,
+    OnTotalMoveUI,
+    OnCubeRollingStart,
+    OnMoveUI,
+    OnCubeRollingEnd,
 
     
     //Game Management
