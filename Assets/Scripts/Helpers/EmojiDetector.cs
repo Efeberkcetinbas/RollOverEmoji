@@ -46,11 +46,15 @@ public class EmojiDetector : MonoBehaviour
             if (emoji.EmojiType == firstEmojiType)
             {
                 matchingEmojis.Add(emoji);
+                if (matchingEmojis.Count == 3)
+                {
+                    break;
+                }
             }
         }
 
         // Check if there are at least 3 of the same type
-        if (matchingEmojis.Count >= 3)
+        if (matchingEmojis.Count == 3)
         {
             Debug.Log($"Found at least 3 emojis of type {firstEmojiType}.");
             MoveEmojis(matchingEmojis); // Optional: Highlight the matched emojis
