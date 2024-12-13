@@ -12,6 +12,12 @@ public enum EmojiType
     Devil,
     Angry,
     Joker,
+
+    //Animals
+
+    Bear,
+    Cow,
+    
     
     // Add more types as needed
 }

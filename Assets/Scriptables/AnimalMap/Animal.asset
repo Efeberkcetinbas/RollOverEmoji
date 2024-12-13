@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d86e9a37d716d4e81debca4ebfdabf, type: 3}
+  m_Name: Animal
+  m_EditorClassIdentifier: 
+  emojis:
+  - emojiPrefab: {fileID: 3456438391525403492, guid: fef1e0f9f9fc2544a870bc09df69c303, type: 3}
+    count: 6
+  - emojiPrefab: {fileID: 3456438391525403492, guid: 60af6842c2e740545a27c0494b671765, type: 3}
+    count: 6
+  obstacleCount: 2
+  enableDebug: 1
