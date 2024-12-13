@@ -43,6 +43,7 @@ public class MapGenerator : MonoBehaviour
         obstaclePositions.Clear();
         emojiPositions.Clear();
         unreachablePositions.Clear();
+        mapManager.Emojis.Clear();
 
         Debug.Log("Starting map generation...");
 
