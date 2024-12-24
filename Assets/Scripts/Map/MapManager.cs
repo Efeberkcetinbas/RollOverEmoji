@@ -22,5 +22,7 @@ public class MapManager : MonoBehaviour
         generalBuildingManager.TransferEmojisToBuildings();
     }
 
+    
+
     //Reset OnNextLevel
 }

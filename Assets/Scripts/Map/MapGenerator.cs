@@ -34,6 +34,16 @@ public class MapGenerator : MonoBehaviour
         mapManager=FindObjectOfType<MapManager>();
     }
 
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnGameStart,GenerateMap);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnGameStart,GenerateMap);
+    }
+
     public void GenerateMap()
     {
         if (mapParent != null) Destroy(mapParent.gameObject); // Clear old map

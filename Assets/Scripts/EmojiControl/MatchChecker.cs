@@ -67,6 +67,7 @@ public class MatchChecker : MonoBehaviour
         if(gameData.levelEmojiCount<=0)
         {
             Debug.Log("SUCCESS");
+            EventManager.Broadcast(GameEvent.OnSuccess);
         }
     }
 

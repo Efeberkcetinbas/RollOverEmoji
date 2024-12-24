@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.AddHandler(GameEvent.OnSuccess,OnSuccess);
+        EventManager.AddHandler(GameEvent.OnFail,OnFail);
 
     }
 
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+        EventManager.RemoveHandler(GameEvent.OnSuccess,OnSuccess);
+        EventManager.RemoveHandler(GameEvent.OnFail,OnFail);
 
     }
 
@@ -49,30 +53,25 @@ public class GameManager : MonoBehaviour
         ClearData(false);
     }
 
-    private void OnConditionSuccess()
-    {
-        Debug.Log("PERFECT. CONG");
-        EventManager.Broadcast(GameEvent.OnSuccess);
-        StartCoroutine(OpenSuccess());
-
-        ///////////////////////////
-        
-        Debug.Log("END FAIL");
-        EventManager.Broadcast(GameEvent.OnGameOver);
-    }
+    
 
    
-    private void OnGameOver()
-    {
-        gameData.isGameEnd=true;
-        StartCoroutine(OpenFail());
-    }
+
 
     private void ClearData(bool val)
     {
         gameData.isGameEnd=val;
     }
 
+    private void OnSuccess()
+    {
+        StartCoroutine(OpenSuccess());
+    }
+
+    private void OnFail()
+    {
+        StartCoroutine(OpenFail());
+    }
     private IEnumerator OpenSuccess()
     {
         yield return waitForSeconds;

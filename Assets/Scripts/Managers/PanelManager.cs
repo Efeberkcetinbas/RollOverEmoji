@@ -14,6 +14,10 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private Image Fade;
     [SerializeField] private float sceneX,sceneY,oldSceneX,oldSceneY,duration;
 
+    //TEMP. THIS WILL BE REMOVED
+    public GameObject NextButton,RestartButton,StartButton;
+
+    //
 
     public GameData gameData;
 
@@ -31,11 +35,16 @@ public class PanelManager : MonoBehaviour
 
     private void OnEnable() 
     {
-        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        /*EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.AddHandler(GameEvent.OnSuccessUI,OnSuccessUI);
         EventManager.AddHandler(GameEvent.OnGameOver,OnGameOver);
         EventManager.AddHandler(GameEvent.OnFailUI,OnFailUI);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);*/
+
+        EventManager.AddHandler(GameEvent.OnSuccessUI,OnSuccessUI);
+        EventManager.AddHandler(GameEvent.OnFailUI,OnFailUI);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
 
     }
@@ -43,16 +52,52 @@ public class PanelManager : MonoBehaviour
 
     private void OnDisable() 
     {
-        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        /*EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.RemoveHandler(GameEvent.OnSuccessUI,OnSuccessUI);
         EventManager.RemoveHandler(GameEvent.OnGameOver,OnGameOver);
         EventManager.RemoveHandler(GameEvent.OnFailUI,OnFailUI);
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);*/
+
+        EventManager.RemoveHandler(GameEvent.OnSuccessUI,OnSuccessUI);
+        EventManager.RemoveHandler(GameEvent.OnFailUI,OnFailUI);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
 
     }
+    //TEMP!
+    #region TEMP
+    private void OnSuccessUI()
+    {
+        NextButton.SetActive(true);
+    }
 
+    private void OnFailUI()
+    {
+        RestartButton.SetActive(true);
+    }
+
+    private void OnNextLevel()
+    {
+        NextButton.SetActive(false);
+        StartButton.SetActive(true);
+    }
+
+    private void OnRestartLevel()
+    {
+        RestartButton.SetActive(false);
+        StartButton.SetActive(true);
+    }
+
+    public void StartGame()
+    {
+        StartButton.SetActive(false);
+        gameData.isGameEnd=false;
+        EventManager.Broadcast(GameEvent.OnGameStart);
+    }
+    #endregion
     
+    /*
     public void StartGame() 
     {
         gameData.isGameEnd=false;
@@ -68,7 +113,6 @@ public class PanelManager : MonoBehaviour
 
 
     
-
     private void OnRestartLevel()
     {
         FailPanel.gameObject.SetActive(false);
@@ -81,8 +125,7 @@ public class PanelManager : MonoBehaviour
 
     private void OnNextLevel()
     {
-        /*StartPanel.gameObject.SetActive(true);
-        StartPanel.DOAnchorPos(Vector2.zero,0.1f);*/
+        
         SuccessPanel.gameObject.SetActive(false);
         StartCoroutine(Blink(Fade.gameObject,Fade));
         SetActivity(SceneUIs,true);
@@ -156,5 +199,7 @@ public class PanelManager : MonoBehaviour
     {
         ScenePanel.DOAnchorPos(new Vector2(valX,valY),duration);
     }
+    */
+
 
 }
