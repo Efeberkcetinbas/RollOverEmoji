@@ -127,6 +127,7 @@ public class MatchChecker : MonoBehaviour
         }
         else
         {
+            EventManager.Broadcast(GameEvent.OnFail);
             Debug.Log("Fail: No possible way to form a match-3.");
         }
     }

@@ -8,6 +8,21 @@ public class MapManager : MonoBehaviour
     
     [SerializeField] private GeneralBuildingManager generalBuildingManager;
 
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnFail,OnFail);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnFail,OnFail);
+    }
+
+    private void OnFail()
+    {
+        Emojis.Clear();
+    }
+
 
     public void SetEmojisToTarget()
     {

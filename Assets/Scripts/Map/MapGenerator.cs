@@ -28,6 +28,8 @@ public class MapGenerator : MonoBehaviour
 
     private MapManager mapManager;
 
+    //For Restart
+    private List<GameObject> tempEmojis=new List<GameObject>();
 
     private void Start()
     {
@@ -37,13 +39,24 @@ public class MapGenerator : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnGameStart,GenerateMap);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnGameStart,GenerateMap);
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
+    private void OnRestartLevel()
+    {
+        for (int i = 0; i < tempEmojis.Count; i++)
+        {
+            tempEmojis[i].SetActive(false);
+        }
+    }
+
+    //Set Private
     public void GenerateMap()
     {
         if (mapParent != null) Destroy(mapParent.gameObject); // Clear old map
@@ -135,6 +148,7 @@ public class MapGenerator : MonoBehaviour
                     GameObject newEmoji=Instantiate(emojiData.emojiPrefab, position + Vector3.up * 0.3f, Quaternion.identity, mapParent);
                     emojiPositions.Add(position);
                     mapManager.Emojis.Add(newEmoji);
+                    tempEmojis.Add(newEmoji);
                     placedCount++;
                 }
             }

@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         OnUIUpdate();
+        OnMoveUI();
     }
     
     private void OnUIUpdate()

@@ -48,6 +48,7 @@ public class ComboManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnMatch, OnMatch);
         EventManager.AddHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.AddHandler(GameEvent.OnFail,OnFail);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
     private void OnDisable()
@@ -55,6 +56,7 @@ public class ComboManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnMatch, OnMatch);
         EventManager.RemoveHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.RemoveHandler(GameEvent.OnFail,OnFail);
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
     private void OnMatch()
@@ -87,7 +89,10 @@ public class ComboManager : MonoBehaviour
         ResetCombo();
     }
 
-    
+    private void OnRestartLevel()
+    {
+        ResetCombo();
+    }
 
     private void ResetCombo()
     {

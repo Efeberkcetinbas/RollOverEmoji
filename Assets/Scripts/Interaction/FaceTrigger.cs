@@ -33,11 +33,13 @@ public class FaceTrigger : Obstacleable
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnCleanCube,OnCleanCube);
+        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnCleanCube,OnCleanCube);
+        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
     }
 
     
@@ -77,6 +79,11 @@ public class FaceTrigger : Obstacleable
         previewSprite.sprite=null;
         tempEmoji=null;
         AssignedEmojiType = EmojiType.None; // Reset enum
+    }
+
+    private void OnRestartLevel()
+    {
+        ResetFace();
     }
 
 

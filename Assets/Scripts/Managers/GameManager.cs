@@ -13,8 +13,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake() 
     {
-        gameData.isGameEnd=true;
-        gameData.CanSwipe=false;
+        ClearData();
     }
 
     private void Start()
@@ -45,19 +44,25 @@ public class GameManager : MonoBehaviour
 
     private void OnNextLevel()
     {
-        gameData.isGameEnd=true;
-        gameData.CanSwipe=false;
+        ClearData();
         
     }
 
     private void OnRestartLevel()
     {
-        gameData.isGameEnd=true;
-        gameData.CanSwipe=false;
+        ClearData();
+        EventManager.Broadcast(GameEvent.OnMoveUI);
+
     }
 
     
+    private void ClearData()
+    {
+        gameData.isGameEnd=true;
+        gameData.CanSwipe=false;
 
+        gameData.moveNumber=0;
+    }
    
 
 
@@ -70,6 +75,7 @@ public class GameManager : MonoBehaviour
 
     private void OnFail()
     {
+        gameData.isGameEnd=true;
         StartCoroutine(OpenFail());
     }
     private IEnumerator OpenSuccess()
