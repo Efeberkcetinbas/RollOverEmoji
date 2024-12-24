@@ -7,6 +7,13 @@ public class MatchChecker : MonoBehaviour
     [SerializeField] private List<FaceTrigger> cubeFaces; // Assign all cube face triggers in the Inspector
     [SerializeField] private GameData gameData;
 
+    private WaitForSeconds waitForSeconds;
+
+    private void Start()
+    {
+        waitForSeconds = new WaitForSeconds(1);
+    }
+
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnCheckMatch, CheckForMatches);
@@ -50,6 +57,7 @@ public class MatchChecker : MonoBehaviour
     private void HandleMatch(List<FaceTrigger> matchingFaces)
     {
         Debug.Log($"Match found for {matchingFaces[0].AssignedEmojiType}");
+        EventManager.Broadcast(GameEvent.OnMatch);
 
         foreach (FaceTrigger face in matchingFaces)
         {
@@ -67,8 +75,15 @@ public class MatchChecker : MonoBehaviour
         if(gameData.levelEmojiCount<=0)
         {
             Debug.Log("SUCCESS");
-            EventManager.Broadcast(GameEvent.OnSuccess);
+            gameData.isGameEnd=true;
+            StartCoroutine(GetSuccess());
         }
+    }
+
+    private IEnumerator GetSuccess()
+    {
+        yield return waitForSeconds;
+        EventManager.Broadcast(GameEvent.OnSuccess);
     }
 
     private void CheckForPotentialMatches()

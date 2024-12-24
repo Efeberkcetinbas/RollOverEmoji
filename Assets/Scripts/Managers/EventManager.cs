@@ -9,6 +9,7 @@ public enum GameEvent
     
     //Match3
     OnCheckMatch,
+    OnMatch,
 
     //Helper
     OnCheckHelpers,
@@ -21,6 +22,10 @@ public enum GameEvent
     OnCubeRollingStart,
     OnMoveUI,
     OnCubeRollingEnd,
+
+    //Combo
+    OnComboUIUpdate,
+    OnComboProgress,
 
     
     //Game Management
