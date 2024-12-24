@@ -9,6 +9,7 @@ public class GameData : ScriptableObject
 
     public int score;
     public int increaseScore;
+    public int decreaseScore;
     public int levelIndex;
     public int levelNumber;
     public int levelEmojiCount;

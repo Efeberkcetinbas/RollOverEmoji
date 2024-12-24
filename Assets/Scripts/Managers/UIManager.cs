@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.AddHandler(GameEvent.OnUIUpdate, OnUIUpdate);
+        EventManager.AddHandler(GameEvent.OnScoreUIUpdate, OnUIUpdate);
         EventManager.AddHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
 
         //Move
@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        EventManager.RemoveHandler(GameEvent.OnUIUpdate, OnUIUpdate);
+        EventManager.RemoveHandler(GameEvent.OnScoreUIUpdate, OnUIUpdate);
         EventManager.RemoveHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
 
         EventManager.RemoveHandler(GameEvent.OnMoveUI,OnMoveUI);

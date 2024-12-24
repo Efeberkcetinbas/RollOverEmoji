@@ -11,6 +11,7 @@ public enum GameEvent
     OnCheckMatch,
 
     //Helper
+    OnCheckHelpers,
     OnCleanCube,
     OnCollect3Emoji,
 
@@ -25,7 +26,7 @@ public enum GameEvent
     //Game Management
     OnGameStart,
     OnIncreaseScore,
-    OnUIUpdate,
+    OnScoreUIUpdate,
     OnLevelUIUpdate,
     
     OnNextLevel,
