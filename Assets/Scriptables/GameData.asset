@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   increaseScore: 0
+  increaseCoin: 1
   decreaseScore: 0
   levelIndex: 0
   levelNumber: 0
-  levelEmojiCount: 0
-  comboCount: 0
-  moveNumber: 118
-  totalMoveNumber: 57
-  elapsedTime: 0
-  currentInterval: 10
+  levelEmojiCount: 12
+  comboCount: 1
+  moveNumber: 67
+  totalMoveNumber: 0
+  elapsedTime: 10.147519
+  currentInterval: 20
   isGameEnd: 0
   CanSwipe: 1
   isPreviewCube: 0

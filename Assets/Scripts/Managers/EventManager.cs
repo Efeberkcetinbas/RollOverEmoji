@@ -10,7 +10,9 @@ public enum GameEvent
     //Match3
     OnCheckMatch,
     OnMatch,
-
+    //Coin
+    OnCollectCoin,
+    OnCoinIncreaseSound,
     //Helper
     OnCheckHelpers,
     OnCleanCube,

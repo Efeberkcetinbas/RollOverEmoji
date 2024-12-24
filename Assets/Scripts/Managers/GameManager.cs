@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake() 
     {
-        ClearData(true);
+        gameData.isGameEnd=true;
+        gameData.CanSwipe=false;
     }
 
     private void Start()
@@ -44,13 +45,15 @@ public class GameManager : MonoBehaviour
 
     private void OnNextLevel()
     {
-        ClearData(false);
+        gameData.isGameEnd=true;
+        gameData.CanSwipe=false;
         
     }
 
     private void OnRestartLevel()
     {
-        ClearData(false);
+        gameData.isGameEnd=true;
+        gameData.CanSwipe=false;
     }
 
     
@@ -58,10 +61,7 @@ public class GameManager : MonoBehaviour
    
 
 
-    private void ClearData(bool val)
-    {
-        gameData.isGameEnd=val;
-    }
+   
 
     private void OnSuccess()
     {

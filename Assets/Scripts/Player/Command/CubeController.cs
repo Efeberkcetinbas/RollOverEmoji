@@ -20,7 +20,8 @@ public class CubeController : MonoBehaviour
 
     private void Update()
     {
-        HandleTouchInput();
+        if(!gameData.isGameEnd)
+            HandleTouchInput();
     }
 
     private void HandleTouchInput()

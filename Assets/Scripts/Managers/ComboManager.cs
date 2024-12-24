@@ -25,6 +25,7 @@ public class ComboManager : MonoBehaviour
     private void Start()
     {
         gameData.currentInterval=20;
+        gameData.comboCount=0;
     }
 
     
@@ -45,15 +46,15 @@ public class ComboManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnMatch, OnMatch);
-        EventManager.AddHandler(GameEvent.OnSuccessUI,OnSuccessUI);
-        EventManager.AddHandler(GameEvent.OnFailUI,OnFailUI);
+        EventManager.AddHandler(GameEvent.OnSuccess,OnSuccess);
+        EventManager.AddHandler(GameEvent.OnFail,OnFail);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnMatch, OnMatch);
-        EventManager.RemoveHandler(GameEvent.OnSuccessUI,OnSuccessUI);
-        EventManager.RemoveHandler(GameEvent.OnFailUI,OnFailUI);
+        EventManager.RemoveHandler(GameEvent.OnSuccess,OnSuccess);
+        EventManager.RemoveHandler(GameEvent.OnFail,OnFail);
     }
 
     private void OnMatch()
@@ -64,6 +65,7 @@ public class ComboManager : MonoBehaviour
         isComboActive = true;
 
         EventManager.Broadcast(GameEvent.OnComboUIUpdate);
+        EventManager.Broadcast(GameEvent.OnCollectCoin);
 
         //RandomizeUIElements();
         ApplyColor();
@@ -75,12 +77,12 @@ public class ComboManager : MonoBehaviour
         }*/
     }
 
-    private void OnSuccessUI()
+    private void OnSuccess()
     {
         ResetCombo();
     }
 
-    private void OnFailUI()
+    private void OnFail()
     {
         ResetCombo();
     }

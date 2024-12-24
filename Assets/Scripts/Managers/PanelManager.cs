@@ -94,6 +94,13 @@ public class PanelManager : MonoBehaviour
         StartButton.SetActive(false);
         gameData.isGameEnd=false;
         EventManager.Broadcast(GameEvent.OnGameStart);
+        StartCoroutine(GetCanSwipe());
+    }
+
+    private IEnumerator GetCanSwipe()
+    {
+        yield return new WaitForSeconds(0.1f);
+        gameData.CanSwipe=true;
     }
     #endregion
     

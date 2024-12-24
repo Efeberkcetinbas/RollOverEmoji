@@ -1751,6 +1751,7 @@ GameObject:
   - component: {fileID: 4373530422498100357}
   - component: {fileID: 178859163389406171}
   - component: {fileID: 7519323207982923372}
+  - component: {fileID: 6556171303599683187}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Cube
@@ -1882,3 +1883,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPosConfig: {fileID: 11400000, guid: e6330b7d4dfe4a24da3818197d80471c, type: 2}
+--- !u!114 &6556171303599683187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8923120665728148897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082c21a9b94e4a048960e502eeba441a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorldPoint: {fileID: 5526069386189218898}
+  gameData: {fileID: 11400000, guid: f781987846fb67f4aa719e7fb83b9b67, type: 2}
