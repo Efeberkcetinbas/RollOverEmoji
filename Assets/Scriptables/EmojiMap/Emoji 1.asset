@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d86e9a37d716d4e81debca4ebfdabf, type: 3}
+  m_Name: Emoji 1
+  m_EditorClassIdentifier: 
+  emojis:
+  - emojiPrefab: {fileID: 7446708597073614335, guid: 92f9ee47ab118084d8233ea28085a49b, type: 3}
+    count: 3
+  - emojiPrefab: {fileID: 7354043164822717751, guid: 9a1129c0c30894b4a9a35ff5fba75f77, type: 3}
+    count: 3
+  - emojiPrefab: {fileID: 3456438391525403492, guid: a7ab5669d93fa054d96c6c37fff4ebcd, type: 3}
+    count: 3
+  obstacleCount: 1
+  enableDebug: 1

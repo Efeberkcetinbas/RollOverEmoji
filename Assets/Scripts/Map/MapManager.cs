@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapManager : MonoBehaviour
 {
     public List<GameObject> Emojis=new List<GameObject>();
-
+    
     [SerializeField] private GeneralBuildingManager generalBuildingManager;
 
 

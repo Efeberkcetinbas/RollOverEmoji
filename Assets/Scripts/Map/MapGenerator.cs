@@ -85,6 +85,7 @@ public class MapGenerator : MonoBehaviour
 
         Debug.Log("Map generation complete.");
         gameData.levelEmojiCount=mapManager.Emojis.Count;
+        
     }
 
     
