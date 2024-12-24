@@ -166,4 +166,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0f59370b1129c4b84bee1641bc5517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EmojiType: 8
+  EmojiType: 9

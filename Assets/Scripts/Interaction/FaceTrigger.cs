@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FaceTrigger : Obstacleable
 {   
     [Header("Sprites")]
-    [SerializeField] private Image faceImage;
+    public SpriteRenderer faceImage;
     [SerializeField] private Image UIsprite;
     [SerializeField] private SpriteRenderer previewSprite;
 
