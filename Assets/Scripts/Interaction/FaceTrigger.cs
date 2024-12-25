@@ -57,6 +57,7 @@ public class FaceTrigger : Obstacleable
                 triggered.gameObject.SetActive(false);
                 triggered.isInteract=true;
                 AssignedEmojiType = triggered.GetComponent<Emoji>().EmojiType;
+                EventManager.Broadcast(GameEvent.OnCollectSticker);
                 StartCoroutine(CheckMatch());
                 Debug.Log($"Assigned {AssignedEmojiType} to face '{gameObject.name}'");
             }

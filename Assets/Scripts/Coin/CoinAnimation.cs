@@ -60,7 +60,7 @@ public class CoinAnimation : MonoBehaviour
                 {
                     coinPool.Release(coin);
                     completedCount++;
-                    //EventManager.Broadcast(GameEvent.OnCoinIncreaseSound);
+                    EventManager.Broadcast(GameEvent.OnCoinIncreaseSound);
                     // Check if all coins are done
                     if (completedCount == count)
                     {

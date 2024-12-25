@@ -12,6 +12,7 @@ public static class EnvironmentChecker
         if (Physics.Raycast(rayOrigin, direction, raycastDistance, obstacleLayer))
         {
             Debug.Log("Obstacle detected. Cannot roll in this direction.");
+            EventManager.Broadcast(GameEvent.OnPlayerCantRoll);
             return false;
         }
 
@@ -23,6 +24,7 @@ public static class EnvironmentChecker
         if (!Physics.Raycast(groundCheckOrigin, Vector3.down, raycastDistance, groundLayer))
         {
             Debug.Log("No ground detected at target position. Cannot roll in this direction.");
+            EventManager.Broadcast(GameEvent.OnPlayerCantRoll);
             return false;
         }
 

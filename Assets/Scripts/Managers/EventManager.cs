@@ -5,6 +5,8 @@ using UnityEngine;
 public enum GameEvent
 {
     //Player
+    OnCollectSticker,
+    OnPlayerCantRoll,
     
     
     //Match3

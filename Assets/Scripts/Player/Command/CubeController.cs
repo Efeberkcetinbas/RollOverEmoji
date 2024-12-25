@@ -71,7 +71,7 @@ public class CubeController : MonoBehaviour
         ExecuteCommand(new RollCommand(transform, direction, gridSize, rollSpeed, OnRollComplete));
         gameData.moveNumber++;
         Debug.Log("MOVEMENT START");
-        //EventManager.Broadcast(GameEvent.OnCubeRollingStart);
+        EventManager.Broadcast(GameEvent.OnCubeRollingStart);
         EventManager.Broadcast(GameEvent.OnMoveUI);
     }
 
@@ -92,7 +92,7 @@ public class CubeController : MonoBehaviour
     {
         isRolling = false; // Unlock movement
         Debug.Log("MOVEMENT END");
-        //EventManager.Broadcast(GameEvent.OnCubeRollingEnd);
+        EventManager.Broadcast(GameEvent.OnCubeRollingEnd);
     }
 
     public void Undo()

@@ -9,13 +9,15 @@ public class CameraManager : MonoBehaviour
     public CinemachineVirtualCamera cm;
 
 
+    [Header("Rolling")]
+    [SerializeField] private float shakeTimeRoll = 0.5f;
+    [SerializeField] private float amplitudeGainRoll=1;
+    [SerializeField] private float frequencyGainRoll=1;
 
-    [Header("Shake Control")]
-    [SerializeField] private float shakeTime = 0.5f;
-    [SerializeField] private float amplitudeGain=1;
-    [SerializeField] private float frequencyGain=1;
-    [SerializeField] private float newFieldOfView;
-    [SerializeField] private float oldFieldOfView;
+    [Header("Match")]
+    [SerializeField] private float shakeTimeMatch = 0.5f;
+    [SerializeField] private float amplitudeGainMatch=1;
+    [SerializeField] private float frequencyGainMatch=1;
     private CinemachineBasicMultiChannelPerlin noise;
 
 
@@ -27,11 +29,15 @@ public class CameraManager : MonoBehaviour
     private void OnEnable() 
     {
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnCubeRollingEnd,OnCubeRollingEnd);
+        EventManager.AddHandler(GameEvent.OnMatch,OnMatch);
     }
 
     private void OnDisable() 
     {
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnCubeRollingEnd,OnCubeRollingEnd);
+        EventManager.RemoveHandler(GameEvent.OnMatch,OnMatch);
 
     }
 
@@ -46,6 +52,16 @@ public class CameraManager : MonoBehaviour
     }
 
     
+
+    private void OnCubeRollingEnd()
+    {
+        Noise(amplitudeGainRoll,frequencyGainRoll,shakeTimeRoll);
+    }
+    
+    private void OnMatch()
+    {
+        Noise(amplitudeGainMatch,frequencyGainMatch,shakeTimeMatch);
+    }
     
     
 
