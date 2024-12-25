@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class FaceTrigger : Obstacleable
 {   
@@ -9,13 +10,14 @@ public class FaceTrigger : Obstacleable
     public SpriteRenderer faceImage;
     [SerializeField] private Image UIsprite;
     [SerializeField] private SpriteRenderer previewSprite;
+    [SerializeField] private CubeProp cubeProp;
 
 
     public EmojiType AssignedEmojiType  = EmojiType.None; // Enum for the face
 
     private WaitForSeconds waitForSeconds;
 
-    public GameObject tempEmoji;
+    private GameObject tempEmoji;
 
 
 
@@ -51,8 +53,38 @@ public class FaceTrigger : Obstacleable
             if(triggered.spriteRenderer!=null && faceImage.sprite==null)
             {
                 faceImage.sprite=triggered.spriteRenderer.sprite;
+
+                //UI
+                UIsprite.transform.localScale=Vector3.zero;
                 UIsprite.sprite=triggered.spriteRenderer.sprite;
+                UIsprite.transform.DOScale(Vector3.one,0.5f).SetEase(Ease.OutBounce);
+                
                 previewSprite.sprite=triggered.spriteRenderer.sprite;
+
+                ParticleSystemRenderer renderer = cubeProp.StickerParticle.GetComponent<ParticleSystemRenderer>();
+                if (renderer != null && renderer.material != null && triggered.spriteRenderer.sprite != null)
+                {
+                    // Get the texture from the SpriteRenderer's sprite
+                    Texture2D spriteTexture = triggered.spriteRenderer.sprite.texture;
+
+                    if (spriteTexture != null)
+                    {
+                        // Assign the texture to the particle system's material
+                        renderer.material.mainTexture = spriteTexture;
+                        cubeProp.StickerParticle.Play();
+    
+                        Debug.Log("Particle system texture successfully updated.");
+                    }
+                    else
+                    {
+                        Debug.LogWarning("The sprite does not have a valid texture.");
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Particle system renderer, material, or triggered sprite is missing.");
+                }
+
                 tempEmoji=triggered.gameObject;
                 triggered.gameObject.SetActive(false);
                 triggered.isInteract=true;

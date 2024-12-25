@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
+
+    
+
+    [Header("Movement")]
     [SerializeField] private float gridSize = 1f;
     [SerializeField] private float rollSpeed = 5f;
     [SerializeField] private float raycastDistance = 1.1f; // Raycast length for detection
