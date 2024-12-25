@@ -3817,6 +3817,10 @@ PrefabInstance:
       value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7056861232493114787, guid: 79802975c6c96234eb04fa99b3ded615, type: 3}
+      propertyPath: ease
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056861232493114787, guid: 79802975c6c96234eb04fa99b3ded615, type: 3}
       propertyPath: mapSettings
       value: 
       objectReference: {fileID: 11400000, guid: acc1be96d14b2ba4390501a7db305533, type: 2}
@@ -5881,8 +5885,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cm: {fileID: 1064855200}
   shakeTimeRoll: 0.1
-  amplitudeGainRoll: 0.5
-  frequencyGainRoll: 0.5
+  amplitudeGainRoll: 0.3
+  frequencyGainRoll: 0.3
   shakeTimeMatch: 0.1
   amplitudeGainMatch: 1
   frequencyGainMatch: 1
@@ -8000,6 +8004,7 @@ MonoBehaviour:
     StickerSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
     Match3Sound: {fileID: 8300000, guid: 35fbad8cdde724f11ba6481f1e64af71, type: 3}
     CantRollSound: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
+    StickerSpawnSound: {fileID: 8300000, guid: b1164304bac26fc4281548c98d3b3901, type: 3}
 --- !u!1 &1687708980
 GameObject:
   m_ObjectHideFlags: 0
@@ -11524,6 +11529,10 @@ PrefabInstance:
     - target: {fileID: 4829165637733965753, guid: 79802975c6c96234eb04fa99b3ded615, type: 3}
       propertyPath: levelcubeposition.y
       value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056861232493114787, guid: 79802975c6c96234eb04fa99b3ded615, type: 3}
+      propertyPath: ease
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 7056861232493114787, guid: 79802975c6c96234eb04fa99b3ded615, type: 3}
       propertyPath: groundTransforms.Array.data[0]

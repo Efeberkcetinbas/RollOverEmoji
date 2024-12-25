@@ -167,4 +167,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EmojiType: 3
-  emojiSprite: {fileID: 2114564813950455768}
+  spriteRenderer: {fileID: 2114564813950455768}

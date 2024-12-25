@@ -19,6 +19,7 @@ public class MapGenerator : MonoBehaviour
 
     [Header("Ground Setup")]
     [SerializeField] private List<Transform> groundTransforms;
+    [SerializeField] private Ease ease;
 
     private Transform mapParent;
     private List<Vector3> groundPositions = new List<Vector3>();
@@ -135,21 +136,43 @@ public class MapGenerator : MonoBehaviour
 
     private void PlaceEmojis()
     {
+        float totalAnimationTime = 2f; // Total time for all emojis to move
+        float individualAnimationTime = totalAnimationTime / mapSettings.emojis.Count;
+        float delay = 0f;
+
         foreach (var emojiData in mapSettings.emojis)
         {
             int placedCount = 0;
 
             while (placedCount < emojiData.count)
             {
-                Vector3 position = GetRandomPosition(true);
+                Vector3 targetPosition = GetRandomPosition(true);
 
-                if (position != Vector3.zero && !emojiPositions.Contains(position))
+                if (targetPosition != Vector3.zero && !emojiPositions.Contains(targetPosition))
                 {
-                    GameObject newEmoji=Instantiate(emojiData.emojiPrefab, position + Vector3.up * 0.3f, Quaternion.identity, mapParent);
-                    emojiPositions.Add(position);
+                    GameObject newEmoji = Instantiate(emojiData.emojiPrefab, mapParent);
+                    newEmoji.transform.position = targetPosition + Vector3.up * 5f; // Start from above for a falling effect
+                    newEmoji.GetComponent<Emoji>().spriteRenderer.enabled=false;
+                    emojiPositions.Add(targetPosition);
                     mapManager.Emojis.Add(newEmoji);
                     tempEmojis.Add(newEmoji);
+
+                    // Animate movement with DOTween
+                    newEmoji.transform.DOMove(targetPosition + Vector3.up * 0.3f, individualAnimationTime)
+                        .SetDelay(delay)
+                        .SetEase(Ease.OutBounce)
+                        .OnStart(() =>
+                        {
+                            EventManager.Broadcast(GameEvent.OnStickerSpawn);
+                            newEmoji.transform.DOScale(Vector3.one * 1.2f, individualAnimationTime / 2f);
+                            newEmoji.GetComponent<Emoji>().spriteRenderer.enabled=true;
+                        })
+                        .OnComplete(()=>{
+                            newEmoji.transform.DOScale(Vector3.one, individualAnimationTime / 2f);
+                        });
+
                     placedCount++;
+                    delay += individualAnimationTime / emojiData.count; // Increment delay to stagger animations
                 }
             }
         }

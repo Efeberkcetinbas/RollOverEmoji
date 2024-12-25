@@ -167,4 +167,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EmojiType: 1
-  emojiSprite: {fileID: 2271593938775199088}
+  spriteRenderer: {fileID: 2271593938775199088}

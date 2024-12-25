@@ -26,4 +26,6 @@ public enum EmojiType
 public class Emoji : MonoBehaviour
 {
     public EmojiType EmojiType; // Assign this in the Inspector
+
+    public SpriteRenderer spriteRenderer;
 }
