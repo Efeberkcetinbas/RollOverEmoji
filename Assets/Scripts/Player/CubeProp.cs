@@ -25,6 +25,7 @@ public class CubeProp : MonoBehaviour
 
     private void OnMatch()
     {
+        matchParticle.transform.position=transform.position+new Vector3(0,2,0);
         matchParticle.Play();
     }
 

@@ -8,10 +8,12 @@ public class MatchChecker : MonoBehaviour
     [SerializeField] private GameData gameData;
 
     private WaitForSeconds waitForSeconds;
+    private MatchResponse matchResponse;
 
     private void Start()
     {
         waitForSeconds = new WaitForSeconds(1);
+        matchResponse=GetComponent<MatchResponse>();
     }
 
     private void OnEnable()
@@ -57,6 +59,7 @@ public class MatchChecker : MonoBehaviour
     private void HandleMatch(List<FaceTrigger> matchingFaces)
     {
         Debug.Log($"Match found for {matchingFaces[0].AssignedEmojiType}");
+        matchResponse.AssignMatchingImages(matchingFaces[0].faceImage.sprite);
         EventManager.Broadcast(GameEvent.OnMatch);
 
         foreach (FaceTrigger face in matchingFaces)
