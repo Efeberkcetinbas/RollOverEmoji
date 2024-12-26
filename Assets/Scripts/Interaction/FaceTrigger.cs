@@ -9,6 +9,7 @@ public class FaceTrigger : Obstacleable
     [Header("Sprites")]
     public SpriteRenderer faceImage;
     [SerializeField] private Image UIsprite;
+    [SerializeField] private Sprite defaultUISprite;
     [SerializeField] private SpriteRenderer previewSprite;
     [SerializeField] private CubeProp cubeProp;
 
@@ -108,7 +109,7 @@ public class FaceTrigger : Obstacleable
     public void ResetFace()
     {
         faceImage.sprite = null;  // Reset sprite
-        UIsprite.sprite=null;
+        UIsprite.sprite=defaultUISprite;
         previewSprite.sprite=null;
         tempEmoji=null;
         AssignedEmojiType = EmojiType.None; // Reset enum

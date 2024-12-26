@@ -17,6 +17,10 @@ public enum EmojiType
 
     Bear,
     Cow,
+    Crocodile,
+    Rhino,
+    Narnwhal,
+    Chick
     
     
     // Add more types as needed

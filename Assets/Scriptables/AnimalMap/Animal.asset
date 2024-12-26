@@ -14,8 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emojis:
   - emojiPrefab: {fileID: 3456438391525403492, guid: fef1e0f9f9fc2544a870bc09df69c303, type: 3}
-    count: 6
+    count: 3
   - emojiPrefab: {fileID: 3456438391525403492, guid: 60af6842c2e740545a27c0494b671765, type: 3}
-    count: 6
-  obstacleCount: 2
+    count: 3
+  - emojiPrefab: {fileID: 3456438391525403492, guid: 8d6529b8e5eb6b74bb0ca8f4b7b27c4d, type: 3}
+    count: 3
+  - emojiPrefab: {fileID: 3456438391525403492, guid: 39f70df93a19dba4ca595c853ba18330, type: 3}
+    count: 3
+  - emojiPrefab: {fileID: 3456438391525403492, guid: 08f4284eba69f204a95b38a7d0190cd4, type: 3}
+    count: 3
+  - emojiPrefab: {fileID: 3456438391525403492, guid: 107ba19789cbdfa40b093a9f9f8a4d5f, type: 3}
+    count: 3
+  obstacleCount: 0
   enableDebug: 1
