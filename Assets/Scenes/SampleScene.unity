@@ -16231,6 +16231,138 @@ PrefabInstance:
       propertyPath: StickerParticle
       value: 
       objectReference: {fileID: 1103781724}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: currentMapType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].Name
+      value: Emoji World
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].Name
+      value: Animal World
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].mapTypes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].faceTriggers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].faceTriggers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].faceTriggers.Array.data[0]
+      value: 
+      objectReference: {fileID: 85673397}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].faceTriggers.Array.data[1]
+      value: 
+      objectReference: {fileID: 555822816}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].faceTriggers.Array.data[2]
+      value: 
+      objectReference: {fileID: 1386156015}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].faceTriggers.Array.data[3]
+      value: 
+      objectReference: {fileID: 15996979}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].faceTriggers.Array.data[4]
+      value: 
+      objectReference: {fileID: 479662387}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].faceTriggers.Array.data[5]
+      value: 
+      objectReference: {fileID: 427640329}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].faceTriggers.Array.data[0]
+      value: 
+      objectReference: {fileID: 85673397}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].faceTriggers.Array.data[1]
+      value: 
+      objectReference: {fileID: 555822816}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].faceTriggers.Array.data[2]
+      value: 
+      objectReference: {fileID: 1386156015}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].faceTriggers.Array.data[3]
+      value: 
+      objectReference: {fileID: 15996979}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].faceTriggers.Array.data[4]
+      value: 
+      objectReference: {fileID: 479662387}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].faceTriggers.Array.data[5]
+      value: 
+      objectReference: {fileID: 427640329}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].cubeModelConfigs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].cubeModelConfigs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].cubeModelConfigs.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: a4ea38a70a2960a4e86dd803e7861349, type: 2}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].cubeModelConfigs.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8420dbd81620bc04b8fe62404926b8cc, type: 2}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].cubeModelConfigs.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8fc6427514bd7a544b23b7c851640c95, type: 2}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].cubeModelConfigs.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: fca14f51e8f0ae543bd6f69d23b8a0d8, type: 2}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].cubeModelConfigs.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: fb06d380c285003439ced2ae8281c0bc, type: 2}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[0].cubeModelConfigs.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b95811a7ba7484479d6d16f1d18e6b7, type: 2}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].cubeModelConfigs.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 490d54e15f10fcc43b5610b5d3dbe83c, type: 2}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].cubeModelConfigs.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: f6fe1456bef45e6409c53e7ea1ff745d, type: 2}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].cubeModelConfigs.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: deea30dd130f87041a18eb151f1eb1fd, type: 2}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].cubeModelConfigs.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 67d7b5bf64b0fc944a39061cc8773773, type: 2}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].cubeModelConfigs.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d6abd02de2b5a341a9e7964d6abb2f0, type: 2}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: modelsDueToMaps.Array.data[1].cubeModelConfigs.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 475e8fd9ebc7e5544aed77b38a8f86c1, type: 2}
     - target: {fileID: 5526069386189218898, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
