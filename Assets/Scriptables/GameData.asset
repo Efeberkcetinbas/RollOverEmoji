@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14db6eb11dc14d4a9aadc380891c5fd, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  score: 30
-  increaseScore: 5
+  score: 100
+  increaseScore: 1
   increaseCoin: 1
-  decreaseScore: 0
+  decreaseScore: 10
   levelIndex: 0
   levelNumber: 0
   levelEmojiCount: 15
   comboCount: 0
-  moveNumber: 143
+  moveNumber: 0
   totalMoveNumber: 0
-  elapsedTime: 0
+  elapsedTime: 10.313174
   currentInterval: 20
   isGameEnd: 1
-  CanSwipe: 1
+  CanSwipe: 0
   isPreviewCube: 0

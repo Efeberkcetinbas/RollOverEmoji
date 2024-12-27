@@ -7232,6 +7232,7 @@ MonoBehaviour:
   - {fileID: 85673396}
   - {fileID: 555822815}
   - {fileID: 1386156014}
+  gameData: {fileID: 11400000, guid: f781987846fb67f4aa719e7fb83b9b67, type: 2}
 --- !u!114 &1046599535
 MonoBehaviour:
   m_ObjectHideFlags: 0

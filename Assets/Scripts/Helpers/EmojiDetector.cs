@@ -6,6 +6,7 @@ using DG.Tweening;
 public class EmojiDetector : MonoBehaviour
 {   
     [SerializeField] private List<Transform> faces=new List<Transform>();
+    [SerializeField] private GameData gameData;
 
     private void OnEnable()
     {
@@ -67,9 +68,19 @@ public class EmojiDetector : MonoBehaviour
 
     private void MoveEmojis(List<Emoji> emojis)
     {
+        int completedCount = 0; // Counter to track completed animations
+        gameData.CanSwipe=false;
         for (int i = 0; i < emojis.Count; i++)
         {
-            emojis[i].transform.DOJump(faces[i].position,1,1,.5f);
+            emojis[i].transform.DOJump(faces[i].position, 1, 1, 0.5f).OnComplete(() =>
+            {
+                completedCount++; // Increment counter when animation completes
+                if (completedCount == emojis.Count)
+                {
+                    Debug.Log("All animations completed!");
+                    gameData.CanSwipe=true;
+                }
+            });
         }
     }
 }
