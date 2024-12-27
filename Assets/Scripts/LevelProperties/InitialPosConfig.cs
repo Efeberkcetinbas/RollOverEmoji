@@ -6,4 +6,5 @@ using UnityEngine;
 public class InitialPosConfig : ScriptableObject
 {
     public Vector3 GivenPosition;
+    public MapTypes GivenMapType;
 }

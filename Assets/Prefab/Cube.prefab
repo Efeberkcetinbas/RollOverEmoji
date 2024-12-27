@@ -531,7 +531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceImage: {fileID: 3966877625722252900}
   UIsprite: {fileID: 0}
-  defaultUISprite: {fileID: 0}
+  defaultUISprite: {fileID: 21300000, guid: 14203d857f625bd4ea0e0abaf69dcd4d, type: 3}
   previewSprite: {fileID: 0}
   cubeProp: {fileID: 3516139563984464530}
   AssignedEmojiType: 0
@@ -5585,7 +5585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceImage: {fileID: 4363448150457473784}
   UIsprite: {fileID: 0}
-  defaultUISprite: {fileID: 0}
+  defaultUISprite: {fileID: 21300000, guid: 14203d857f625bd4ea0e0abaf69dcd4d, type: 3}
   previewSprite: {fileID: 0}
   cubeProp: {fileID: 3516139563984464530}
   AssignedEmojiType: 0
@@ -5737,7 +5737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceImage: {fileID: 6543123909018758630}
   UIsprite: {fileID: 0}
-  defaultUISprite: {fileID: 0}
+  defaultUISprite: {fileID: 21300000, guid: 14203d857f625bd4ea0e0abaf69dcd4d, type: 3}
   previewSprite: {fileID: 0}
   cubeProp: {fileID: 3516139563984464530}
   AssignedEmojiType: 0
@@ -5889,7 +5889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceImage: {fileID: 3923378433066620656}
   UIsprite: {fileID: 0}
-  defaultUISprite: {fileID: 0}
+  defaultUISprite: {fileID: 21300000, guid: 14203d857f625bd4ea0e0abaf69dcd4d, type: 3}
   previewSprite: {fileID: 0}
   cubeProp: {fileID: 3516139563984464530}
   AssignedEmojiType: 0
@@ -6041,7 +6041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceImage: {fileID: 8156111198360802348}
   UIsprite: {fileID: 0}
-  defaultUISprite: {fileID: 0}
+  defaultUISprite: {fileID: 21300000, guid: 14203d857f625bd4ea0e0abaf69dcd4d, type: 3}
   previewSprite: {fileID: 0}
   cubeProp: {fileID: 3516139563984464530}
   AssignedEmojiType: 0
@@ -6310,7 +6310,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMapType: 0
-  modelsDueToMaps: []
+  modelsDueToMaps:
+  - Name: Emoji World
+    mapTypes: 0
+    faceTriggers:
+    - {fileID: 6101724975695375738}
+    - {fileID: 7036832238138778316}
+    - {fileID: 54258676178381907}
+    - {fileID: 482092159877184226}
+    - {fileID: 1691704571848076954}
+    - {fileID: 7303939522745884571}
+    cubeModelConfigs:
+    - {fileID: 11400000, guid: a4ea38a70a2960a4e86dd803e7861349, type: 2}
+    - {fileID: 11400000, guid: 8420dbd81620bc04b8fe62404926b8cc, type: 2}
+    - {fileID: 11400000, guid: 8fc6427514bd7a544b23b7c851640c95, type: 2}
+    - {fileID: 11400000, guid: fca14f51e8f0ae543bd6f69d23b8a0d8, type: 2}
+    - {fileID: 11400000, guid: fb06d380c285003439ced2ae8281c0bc, type: 2}
+    - {fileID: 11400000, guid: 8b95811a7ba7484479d6d16f1d18e6b7, type: 2}
+  - Name: Animal World
+    mapTypes: 1
+    faceTriggers:
+    - {fileID: 6101724975695375738}
+    - {fileID: 7036832238138778316}
+    - {fileID: 54258676178381907}
+    - {fileID: 482092159877184226}
+    - {fileID: 1691704571848076954}
+    - {fileID: 7303939522745884571}
+    cubeModelConfigs:
+    - {fileID: 11400000, guid: 490d54e15f10fcc43b5610b5d3dbe83c, type: 2}
+    - {fileID: 11400000, guid: f6fe1456bef45e6409c53e7ea1ff745d, type: 2}
+    - {fileID: 11400000, guid: deea30dd130f87041a18eb151f1eb1fd, type: 2}
+    - {fileID: 11400000, guid: 67d7b5bf64b0fc944a39061cc8773773, type: 2}
+    - {fileID: 11400000, guid: 5d6abd02de2b5a341a9e7964d6abb2f0, type: 2}
+    - {fileID: 11400000, guid: 475e8fd9ebc7e5544aed77b38a8f86c1, type: 2}
 --- !u!1 &7772451171018493167
 GameObject:
   m_ObjectHideFlags: 0
@@ -6711,7 +6743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceImage: {fileID: 2600937731355073485}
   UIsprite: {fileID: 0}
-  defaultUISprite: {fileID: 0}
+  defaultUISprite: {fileID: 21300000, guid: 14203d857f625bd4ea0e0abaf69dcd4d, type: 3}
   previewSprite: {fileID: 0}
   cubeProp: {fileID: 3516139563984464530}
   AssignedEmojiType: 0
@@ -11630,6 +11662,7 @@ GameObject:
   - component: {fileID: 178859163389406171}
   - component: {fileID: 7519323207982923372}
   - component: {fileID: 3516139563984464530}
+  - component: {fileID: 1039243579134729660}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Cube
@@ -11777,3 +11810,18 @@ MonoBehaviour:
   StickerParticle: {fileID: 0}
   rollEndParticle: {fileID: 7340247658676769433}
   matchParticle: {fileID: 0}
+--- !u!114 &1039243579134729660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8923120665728148897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00d4e53cc3725c42967ad3e70a75291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 10
+  gameData: {fileID: 11400000, guid: f781987846fb67f4aa719e7fb83b9b67, type: 2}
+  cube: {fileID: 5526069386189218898}

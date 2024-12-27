@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [Serializable]
 public class HelperProperties
@@ -10,6 +11,8 @@ public class HelperProperties
     public Image HelperImage;
     public Button BuyButton;
     public Button UseButton;
+    public TextMeshProUGUI UseAmountText;
+    public TextMeshProUGUI PriceText;
     public HelperConfig helperConfig;
     public GameEvent gameEvent;
 }
@@ -46,12 +49,14 @@ public class HelperManager : MonoBehaviour
     {
         for (int i = 0; i < helperProperties.Count; i++)
         {
-            helperProperties[i].HelperImage.sprite=helperProperties[i].helperConfig.HelperSprite;
+            //helperProperties[i].HelperImage.sprite=helperProperties[i].helperConfig.HelperSprite;
             var helperProperty = helperProperties[i];
             var config = helperProperty.helperConfig;
 
             // Load the Amount value from PlayerPrefs, defaulting to 0 if not set
             config.Amount = PlayerPrefs.GetInt($"Helper_{i}_Amount", 0);
+            helperProperty.UseAmountText.SetText(config.Amount.ToString());
+            helperProperty.PriceText.SetText(config.RequirementScore.ToString());
         }
     }
 
@@ -76,8 +81,8 @@ public class HelperManager : MonoBehaviour
             useButton.gameObject.SetActive(hasAmount);
 
             // Update button interactability
-            buyButton.interactable = !hasAmount && canBuy;
-            useButton.interactable = hasAmount;
+            /*buyButton.interactable = !hasAmount && canBuy;
+            useButton.interactable = hasAmount;*/
 
             PlayerPrefs.SetInt($"Helper_{i}_Amount", config.Amount);
         }
@@ -87,18 +92,26 @@ public class HelperManager : MonoBehaviour
 
     public void BuyHelper(int index)
     {
-        gameData.score-=helperProperties[index].helperConfig.RequirementScore;
-        gameData.decreaseScore=helperProperties[index].helperConfig.RequirementScore;
-        EventManager.Broadcast(GameEvent.OnScoreUIUpdate);
-        PlayerPrefs.SetInt("Score",gameData.score);
-        helperProperties[index].helperConfig.Amount=helperProperties[index].helperConfig.GivenAmount;
-        
-        CheckIfButtonAvailable();
+        if(gameData.score>=helperProperties[index].helperConfig.RequirementScore)
+        {
+            gameData.score-=helperProperties[index].helperConfig.RequirementScore;
+            gameData.decreaseScore=helperProperties[index].helperConfig.RequirementScore;
+            EventManager.Broadcast(GameEvent.OnScoreUIUpdate);
+            PlayerPrefs.SetInt("Score",gameData.score);
+            helperProperties[index].helperConfig.Amount=helperProperties[index].helperConfig.GivenAmount;
+            helperProperties[index].UseAmountText.SetText(helperProperties[index].helperConfig.Amount.ToString());
+            
+            CheckIfButtonAvailable();
+        }
+
+        else
+            return;
     }
 
     public void UseHelper(int index)
     {
         helperProperties[index].helperConfig.Amount--;
+        helperProperties[index].UseAmountText.SetText(helperProperties[index].helperConfig.Amount.ToString());
         EventManager.Broadcast(helperProperties[index].gameEvent);
         CheckIfButtonAvailable();
     }

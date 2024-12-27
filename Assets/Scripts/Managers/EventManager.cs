@@ -13,6 +13,9 @@ public enum GameEvent
     OnCheckMatch,
     OnMatch,
 
+    //Level
+    OnUpdateMapType,
+
     //Coin
     OnCollectCoin,
     OnCoinIncreaseSound,
@@ -24,6 +27,9 @@ public enum GameEvent
     OnCheckHelpers,
     OnCleanCube,
     OnCollect3Emoji,
+    OnRotateVertical,
+    OnRotateHorizontal,
+    
 
     //Move
     OnSetTotalMove,

@@ -8,13 +8,24 @@ public class Rotater : MonoBehaviour
     [SerializeField] private GameData gameData;
     [SerializeField] private Transform cube;
 
-    //Or use Events for rotation
-    public void RotateLeftRight()
+
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnRotateHorizontal,OnRotateHorizontal);
+        EventManager.AddHandler(GameEvent.OnRotateVertical,OnRotateVertical);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnRotateHorizontal,OnRotateHorizontal);
+        EventManager.RemoveHandler(GameEvent.OnRotateVertical,OnRotateVertical);
+    }
+    private void OnRotateHorizontal()
     {
         StartRotation(Vector3.up, -90,cube);
     }
 
-    public void RotateUpDown()
+    private void OnRotateVertical()
     {
         StartRotation(Vector3.right, 90,cube);
     }

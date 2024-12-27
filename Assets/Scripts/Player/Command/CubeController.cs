@@ -1,11 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class CubeController : MonoBehaviour
 {
-
-    
-
     [Header("Movement")]
     [SerializeField] private float gridSize = 1f;
     [SerializeField] private float rollSpeed = 5f;
@@ -21,6 +18,7 @@ public class CubeController : MonoBehaviour
     private const float swipeThreshold = 50f;
 
     private bool isRolling = false;
+    private bool startedOverUI;
 
     private void Update()
     {
@@ -36,13 +34,21 @@ public class CubeController : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
+            // Check if the touch is over a UI element
+            
+                
+
             switch (touch.phase)
             {
                 case TouchPhase.Began:
+                    startedOverUI = EventSystem.current.IsPointerOverGameObject(touch.fingerId);
                     startTouchPosition = touch.position;
                     break;
 
                 case TouchPhase.Ended:
+                    // Only process swipe if it didn't start over a UI element
+                    if (startedOverUI) return;
+                    
                     Vector2 endTouchPosition = touch.position;
                     Vector2 swipeDelta = endTouchPosition - startTouchPosition;
 
@@ -55,6 +61,7 @@ public class CubeController : MonoBehaviour
             }
         }
     }
+    
 
     private Vector3 GetSwipeDirection(Vector2 swipeDelta)
     {

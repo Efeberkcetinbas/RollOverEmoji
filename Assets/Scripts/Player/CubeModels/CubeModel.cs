@@ -19,6 +19,7 @@ public class ModelsDueToMap
 
     [SerializeField] private List<FaceTrigger> faceTriggers = new List<FaceTrigger>();
     [SerializeField] private List<CubeModelConfig> cubeModelConfigs = new List<CubeModelConfig>();
+    
 
     // Properties to access the private fields
     public List<FaceTrigger> FaceTriggers => faceTriggers;
@@ -29,10 +30,21 @@ public class CubeModel : MonoBehaviour
 
     public MapTypes currentMapType; // Assign this in the Inspector or dynamically at runtime
     public List<ModelsDueToMap> modelsDueToMaps = new List<ModelsDueToMap>();
+    [SerializeField] private InitialPosConfig initialPosConfig;
 
     private void Start()
     {
         AssignFaceSpriteScaleandPos();
+    }
+
+    private void OnEnable()
+    {
+        EventManager.AddHandler(GameEvent.OnUpdateMapType,OnUpdateMapType);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.RemoveHandler(GameEvent.OnUpdateMapType,OnUpdateMapType);
     }
 
     private void AssignFaceSpriteScaleandPos()
@@ -62,5 +74,11 @@ public class CubeModel : MonoBehaviour
             faceTrigger.faceImage.transform.localPosition = config.FacePosition;
             faceTrigger.faceImage.transform.localScale = config.FaceScale;
         }
+    }
+
+    private void OnUpdateMapType()
+    {
+        currentMapType=initialPosConfig.GivenMapType;
+        AssignFaceSpriteScaleandPos();
     }
 }

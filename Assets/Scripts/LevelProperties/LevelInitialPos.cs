@@ -5,7 +5,8 @@ using UnityEngine;
 public class LevelInitialPos : MonoBehaviour
 {
     [SerializeField] private Vector3 levelcubeposition;
-    [SerializeField] InitialPosConfig initialPosConfig;
+    [SerializeField] private InitialPosConfig initialPosConfig;
+    [SerializeField] private MapTypes mapType;
 
     private void Start()
     {
@@ -25,5 +26,7 @@ public class LevelInitialPos : MonoBehaviour
     private void OnNextLevel()
     {
         initialPosConfig.GivenPosition=levelcubeposition;
+        initialPosConfig.GivenMapType=mapType;
+        EventManager.Broadcast(GameEvent.OnUpdateMapType);
     }
 }

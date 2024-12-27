@@ -15,7 +15,7 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private float sceneX,sceneY,oldSceneX,oldSceneY,duration;
 
     //TEMP. THIS WILL BE REMOVED
-    public GameObject NextButton,RestartButton,StartButton;
+    public GameObject NextButton,RestartButton,StartButton,HelperPanel,OpenButton,CloseButton;
 
     //
 
@@ -95,6 +95,20 @@ public class PanelManager : MonoBehaviour
         gameData.isGameEnd=false;
         EventManager.Broadcast(GameEvent.OnGameStart);
         StartCoroutine(GetCanSwipe());
+    }
+
+    public void OpenHelpersPanel()
+    {
+        OpenButton.SetActive(false);
+        HelperPanel.SetActive(true);
+        CloseButton.SetActive(true);        
+    }
+
+    public void CloseHelpersPanel()
+    {
+        OpenButton.SetActive(true);
+        HelperPanel.SetActive(false);
+        CloseButton.SetActive(false);
     }
 
     private IEnumerator GetCanSwipe()
