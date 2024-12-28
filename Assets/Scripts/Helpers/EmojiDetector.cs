@@ -28,6 +28,7 @@ public class EmojiDetector : MonoBehaviour
     {
         // Find all Emoji objects in the scene
         Emoji[] allEmojis = FindObjectsOfType<Emoji>();
+        
 
         if (allEmojis.Length == 0)
         {
@@ -69,18 +70,25 @@ public class EmojiDetector : MonoBehaviour
     private void MoveEmojis(List<Emoji> emojis)
     {
         int completedCount = 0; // Counter to track completed animations
-        gameData.CanSwipe=false;
+        gameData.CanSwipe = false;
+
         for (int i = 0; i < emojis.Count; i++)
         {
-            emojis[i].transform.DOJump(faces[i].position, 1, 1, 0.5f).OnComplete(() =>
-            {
-                completedCount++; // Increment counter when animation completes
-                if (completedCount == emojis.Count)
+            int currentIndex = i; // Capture the current index
+            //emojis[currentIndex].GetComponent<BoxCollider>().enabled=false;
+            emojis[currentIndex].transform
+                .DOJump(faces[currentIndex].position, 1, 1, 0.5f)
+                .OnComplete(() =>
                 {
-                    Debug.Log("All animations completed!");
-                    gameData.CanSwipe=true;
-                }
-            });
+                    // Use the captured index
+                    emojis[currentIndex].GetComponent<BoxCollider>().size=Vector3.one*2;
+                    completedCount++; // Increment counter when animation completes
+                    if (completedCount == emojis.Count)
+                    {
+                        Debug.Log("All animations completed!");
+                        gameData.CanSwipe = true;
+                    }
+                });
         }
     }
 }
