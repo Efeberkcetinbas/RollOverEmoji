@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
-
+using DG.Tweening;
 public enum MapTypes
 {
     EmojiWorld,
@@ -31,21 +29,37 @@ public class CubeModel : MonoBehaviour
     public MapTypes currentMapType; // Assign this in the Inspector or dynamically at runtime
     public List<ModelsDueToMap> modelsDueToMaps = new List<ModelsDueToMap>();
     [SerializeField] private InitialPosConfig initialPosConfig;
+    [SerializeField] private Transform model;
+    [SerializeField] private Vector3 selectedScale;
+
+
 
     private void Start()
     {
+        model.transform.localScale=Vector3.zero;
         AssignFaceSpriteScaleandPos();
     }
 
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnUpdateMapType,OnUpdateMapType);
+        EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnUpdateMapType,OnUpdateMapType);
+        EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
     }
+
+    private void OnGameStart()
+    {
+        model.transform.localScale=Vector3.zero;
+        model.transform.DOScale(selectedScale,0.5f).SetEase(Ease.OutBounce);
+    }
+
+    
+    
 
     private void AssignFaceSpriteScaleandPos()
     {

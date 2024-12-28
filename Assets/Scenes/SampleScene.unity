@@ -3725,6 +3725,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560506268}
   m_CullTransparentMesh: 1
+--- !u!4 &565724832 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1642233833833290360, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+  m_PrefabInstance: {fileID: 4498612101722295484}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &578023316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4410,6 +4415,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3538540705311028855, guid: 7ae2ceb6c77bcb84fbb81009490a9eb4, type: 3}
   m_PrefabInstance: {fileID: 676422908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &679973098 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 88246428775368167, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+  m_PrefabInstance: {fileID: 4498612101722295484}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &698437686
 PrefabInstance:
@@ -20238,6 +20248,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1103781724}
     - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 565724832}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: selectedScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: selectedScale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: selectedScale.z
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921866706644432059, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
       propertyPath: initialPosConfig
       value: 
       objectReference: {fileID: 11400000, guid: e6330b7d4dfe4a24da3818197d80471c, type: 2}
@@ -20306,9 +20332,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1216817458}
     - target: {fileID: 7627203591220931554, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 679973098}
+    - target: {fileID: 7627203591220931554, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: selectedScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627203591220931554, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: selectedScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627203591220931554, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: selectedScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627203591220931554, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
       propertyPath: initialPosConfig
       value: 
       objectReference: {fileID: 11400000, guid: e6330b7d4dfe4a24da3818197d80471c, type: 2}
+    - target: {fileID: 7738734373332769351, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8923120665728148897, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
       propertyPath: m_Name
       value: Cube
