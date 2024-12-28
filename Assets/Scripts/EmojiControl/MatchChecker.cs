@@ -6,14 +6,18 @@ public class MatchChecker : MonoBehaviour
 {
     [SerializeField] private List<FaceTrigger> cubeFaces; // Assign all cube face triggers in the Inspector
     [SerializeField] private GameData gameData;
+    [SerializeField] private AchievementData achievementData,completedData;
 
     private WaitForSeconds waitForSeconds;
     private MatchResponse matchResponse;
+
+    private AchievementManager achievementManager;
 
     private void Start()
     {
         waitForSeconds = new WaitForSeconds(1);
         matchResponse=GetComponent<MatchResponse>();
+        achievementManager=FindObjectOfType<AchievementManager>();
     }
 
     private void OnEnable()
@@ -75,6 +79,8 @@ public class MatchChecker : MonoBehaviour
     private void CheckForEmojiNumber()
     {
         gameData.levelEmojiCount-=3;
+        achievementManager.UpdateProgress(achievementData, 1);
+        achievementManager.UpdateProgress(completedData, 1);
         if(gameData.levelEmojiCount<=0)
         {
             Debug.Log("SUCCESS");
