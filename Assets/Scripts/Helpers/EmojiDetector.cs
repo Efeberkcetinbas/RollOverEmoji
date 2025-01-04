@@ -21,7 +21,7 @@ public class EmojiDetector : MonoBehaviour
 
     private void OnCollect3Emoji()
     {
-        EventManager.Broadcast(GameEvent.OnCleanCube);
+        //EventManager.Broadcast(GameEvent.OnCleanCube);
         DetectThreeMatchingEmojis();
     }
     public void DetectThreeMatchingEmojis()
@@ -63,6 +63,7 @@ public class EmojiDetector : MonoBehaviour
         }
         else
         {
+            //HERE IT CANT COLLECT 3 EMOJI. BROADCAST IT
             Debug.Log($"Less than 3 emojis of type {firstEmojiType} found.");
         }
     }

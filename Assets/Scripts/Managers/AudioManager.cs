@@ -27,6 +27,15 @@ public class AudioClipsPlayer
     public AudioClip StickerSpawnSound;
 
 }
+
+[Serializable]
+public class AudioClipsHelpers
+{
+    public AudioClip RotateHelperSound;
+    public AudioClip CleanHelperSound;
+    public AudioClip Collect3Sound;
+
+}
 public class AudioManager : MonoBehaviour
 {
     public AudioClip GameLoop,BuffMusic;
@@ -37,6 +46,8 @@ public class AudioManager : MonoBehaviour
     public AudioClipsGameManagement audioClipsGameManagement;
     [Header("Player")]
     public AudioClipsPlayer audioClipsPlayer;
+    [Header("Helpers")]
+    public AudioClipsHelpers audioClipsHelpers;
 
 
 
@@ -66,6 +77,12 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnCollectSticker,OnCollectSticker);
         EventManager.AddHandler(GameEvent.OnPlayerCantRoll,OnPlayerCantRoll);
         EventManager.AddHandler(GameEvent.OnStickerSpawn,OnStickerSpawn);
+
+        //BOOSTERS
+        EventManager.AddHandler(GameEvent.OnRotateHorizontal,OnRotateHorizontal);
+        EventManager.AddHandler(GameEvent.OnRotateVertical,OnRotateVertical);
+        EventManager.AddHandler(GameEvent.OnCollect3Emoji,OnCollect3Emoji);
+        EventManager.AddHandler(GameEvent.OnCleanCube,OnCleanCube);
         
 
     }
@@ -87,6 +104,12 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnCollectSticker,OnCollectSticker);
         EventManager.RemoveHandler(GameEvent.OnPlayerCantRoll,OnPlayerCantRoll);
         EventManager.RemoveHandler(GameEvent.OnStickerSpawn,OnStickerSpawn);
+
+        //BOOSTERS
+        EventManager.RemoveHandler(GameEvent.OnRotateHorizontal,OnRotateHorizontal);
+        EventManager.RemoveHandler(GameEvent.OnRotateVertical,OnRotateVertical);
+        EventManager.RemoveHandler(GameEvent.OnCollect3Emoji,OnCollect3Emoji);
+        EventManager.RemoveHandler(GameEvent.OnCleanCube,OnCleanCube);
     }
 
     
@@ -170,6 +193,34 @@ public class AudioManager : MonoBehaviour
     {
         effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.StickerSpawnSound);
+    }
+
+    #endregion
+
+    #region Helpers
+
+    private void OnRotateHorizontal()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsHelpers.RotateHelperSound);
+    }
+
+    private void OnRotateVertical()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsHelpers.RotateHelperSound);
+    }
+
+    private void OnCleanCube()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsHelpers.CleanHelperSound);
+    }
+
+    private void OnCollect3Emoji()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsHelpers.Collect3Sound);
     }
 
     #endregion

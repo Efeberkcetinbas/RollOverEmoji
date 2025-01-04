@@ -126,4 +126,25 @@ public class AchievementManager : MonoBehaviour
             }
         }
     }
+
+    public void ClearAchievements()
+    {
+        // Reset achievements in memory
+        foreach (var achievement in achievements)
+        {
+            achievement.isCompleted = false;
+            achievement.progress = 0;
+        }
+
+        // Delete the saved file
+        if (File.Exists(saveFilePath))
+        {
+            File.Delete(saveFilePath);
+        }
+
+        Debug.Log("Achievements cleared and reset.");
+        
+        // Update the UI
+        UpdateAchievementUI(0);
+    }
 }

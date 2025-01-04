@@ -11,6 +11,9 @@ public class CubeController : MonoBehaviour
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private GameData gameData;
 
+    [Header("Cube Follower")]
+    [SerializeField] private Transform cubeFollower;
+
     private Stack<ICommand> commandHistory = new Stack<ICommand>();
     private Stack<ICommand> redoStack = new Stack<ICommand>();
 
@@ -25,6 +28,8 @@ public class CubeController : MonoBehaviour
         if(!gameData.isGameEnd)
             HandleTouchInput();
     }
+
+    
 
     private void HandleTouchInput()
     {
@@ -59,6 +64,7 @@ public class CubeController : MonoBehaviour
                     }
                     break;
             }
+
         }
     }
     
@@ -101,6 +107,7 @@ public class CubeController : MonoBehaviour
 
     private void OnRollComplete()
     {
+        cubeFollower.position=transform.position;
         isRolling = false; // Unlock movement
         Debug.Log("MOVEMENT END");
         EventManager.Broadcast(GameEvent.OnCubeRollingEnd);

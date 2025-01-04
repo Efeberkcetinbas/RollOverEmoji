@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FirstMatch
   m_EditorClassIdentifier: 
   achievementName: FirstMatch
-  imageSprite: {fileID: 21300000, guid: 7cc3590aae4bfd74fa199fece6e0c26d, type: 3}
+  imageSprite: {fileID: 21300000, guid: ce6dc0dc87f039344ae273debbe85e0b, type: 3}
   successText: COMPLETED
   isCompleted: 1
   progress: 1
