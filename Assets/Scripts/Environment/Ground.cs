@@ -42,8 +42,8 @@ public class Ground : MonoBehaviour
         }
 
         groundMeshes[selectedIndex].gameObject.SetActive(true);
-        groundMeshes[selectedIndex].localScale=Vector3.zero;
-        groundMeshes[selectedIndex].DOScale(Vector3.one,0.5f).SetEase(Ease.OutBounce);
+        transform.localScale=Vector3.zero;
+        transform.DOScale(Vector3.one,0.5f).SetEase(Ease.OutBounce);
     }
 
     
