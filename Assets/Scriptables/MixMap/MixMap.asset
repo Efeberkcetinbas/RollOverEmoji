@@ -33,5 +33,5 @@ MonoBehaviour:
     count: 3
   - emojiPrefab: {fileID: 3456438391525403492, guid: 08f4284eba69f204a95b38a7d0190cd4, type: 3}
     count: 6
-  obstacleCount: 5
+  obstacleCount: 1
   enableDebug: 1

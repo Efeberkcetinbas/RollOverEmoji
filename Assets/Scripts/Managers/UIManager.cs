@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
     
     private void OnMoveUI()
     {
-        moveText.SetText("Move " + gameData.moveNumber.ToString());
+        moveText.SetText(gameData.moveNumber.ToString());
     }
 
     private void OnTotalMoveUI()
