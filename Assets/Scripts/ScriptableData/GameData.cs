@@ -15,6 +15,7 @@ public class GameData : ScriptableObject
     public int levelNumber;
     public int levelEmojiCount;
     public int comboCount;
+    public int starAmount;
 
     //Move
 

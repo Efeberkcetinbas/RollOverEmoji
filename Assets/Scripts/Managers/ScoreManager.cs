@@ -7,6 +7,12 @@ public class ScoreManager : MonoBehaviour
 {
     public GameData gameData;
 
+    private void Start()
+    {
+        gameData.score=PlayerPrefs.GetInt("Score",0);
+        UpdateUI();
+    }
+
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnIncreaseScore, OnIncreaseScore);
@@ -33,6 +39,8 @@ public class ScoreManager : MonoBehaviour
     private void ChangeScore(int value)
     {
         gameData.score=value;
+        PlayerPrefs.SetInt("Score",gameData.score);
+        
     }
 
     private void UpdateUI()

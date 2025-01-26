@@ -10,7 +10,6 @@ public class FaceTrigger : Obstacleable
     public SpriteRenderer faceImage;
     [SerializeField] private Image UIsprite;
     [SerializeField] private Sprite defaultUISprite;
-    [SerializeField] private SpriteRenderer previewSprite;
     [SerializeField] private CubeProp cubeProp;
 
 
@@ -60,7 +59,6 @@ public class FaceTrigger : Obstacleable
                 UIsprite.sprite=triggered.spriteRenderer.sprite;
                 UIsprite.transform.DOScale(Vector3.one,0.5f).SetEase(Ease.OutBounce);
                 
-                previewSprite.sprite=triggered.spriteRenderer.sprite;
 
                 ParticleSystemRenderer renderer = cubeProp.StickerParticle.GetComponent<ParticleSystemRenderer>();
                 if (renderer != null && renderer.material != null && triggered.spriteRenderer.sprite != null)
@@ -110,7 +108,6 @@ public class FaceTrigger : Obstacleable
     {
         faceImage.sprite = null;  // Reset sprite
         UIsprite.sprite=defaultUISprite;
-        previewSprite.sprite=null;
         tempEmoji=null;
         AssignedEmojiType = EmojiType.None; // Reset enum
     }

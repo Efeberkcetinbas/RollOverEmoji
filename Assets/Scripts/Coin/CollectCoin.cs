@@ -6,14 +6,11 @@ public class CollectCoin : MonoBehaviour
 {
     [SerializeField] private Transform WorldPoint;
     [SerializeField] private GameData gameData;
-    private CoinAnimation coinAnimation;
+    [SerializeField] private CoinAnimation coinAnimation;
 
     private int coinCounter;
     private int counter;
-    private void Start()
-    {
-        coinAnimation=FindObjectOfType<CoinAnimation>();
-    }
+    
 
     private void OnEnable()
     {

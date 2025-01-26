@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 06144a2ed3cccc9478fa020daf0913f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f343507bfab5e4f4f852ba6583c15d7d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 8158666403414510145}
   - component: {fileID: 8710003266163488197}
   - component: {fileID: 763135327090412824}
+  - component: {fileID: 1923544413323213716}
   m_Layer: 5
   m_Name: StickerPlaceholder
   m_TagString: Untagged
@@ -264,7 +265,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4842893883743026438}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -287,6 +288,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1923544413323213716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4842893883743026438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1d3990a98e7864785573c0c3605b17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stickerImage: {fileID: 7450594842778044850}
+  stickerText: {fileID: 6454397654822893528}
+  requiredStars: 25
+  percentOpen: 0
+  isFullyOpened: 0
 --- !u!1 &5547928649105464387
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +370,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 06144a2ed3cccc9478fa020daf0913f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f343507bfab5e4f4f852ba6583c15d7d, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

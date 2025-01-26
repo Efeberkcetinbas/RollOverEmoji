@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private void Awake() 
     {
         ClearData();
+        gameData.starAmount=PlayerPrefs.GetInt("Star",0);
+
     }
 
     private void Start()

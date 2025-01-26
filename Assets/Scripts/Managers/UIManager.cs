@@ -10,6 +10,10 @@ public class UIManager : MonoBehaviour
     [Header("Scene Texts")]
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI levelText;
+    [Header("Star")]
+    [SerializeField] private TextMeshProUGUI starAmountText;
+    [SerializeField] private TextMeshProUGUI startStarAmountText;
+
 
     [Header("Combo Part")]
     [SerializeField] private TextMeshProUGUI comboText;
@@ -28,6 +32,9 @@ public class UIManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnScoreUIUpdate, OnUIUpdate);
         EventManager.AddHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
 
+        //Star
+        EventManager.AddHandler(GameEvent.OnIncreaseStar,OnIncreaseStar);
+
         //Move
         EventManager.AddHandler(GameEvent.OnMoveUI,OnMoveUI);
         EventManager.AddHandler(GameEvent.OnTotalMoveUI,OnTotalMoveUI);
@@ -43,6 +50,8 @@ public class UIManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnScoreUIUpdate, OnUIUpdate);
         EventManager.RemoveHandler(GameEvent.OnLevelUIUpdate,OnLevelUIUpdate);
 
+        EventManager.RemoveHandler(GameEvent.OnIncreaseStar,OnIncreaseStar);
+
         EventManager.RemoveHandler(GameEvent.OnMoveUI,OnMoveUI);
         EventManager.RemoveHandler(GameEvent.OnTotalMoveUI,OnTotalMoveUI);
 
@@ -55,6 +64,7 @@ public class UIManager : MonoBehaviour
     {
         OnUIUpdate();
         OnMoveUI();
+        OnIncreaseStar();
     }
     
     private void OnUIUpdate()
@@ -62,6 +72,12 @@ public class UIManager : MonoBehaviour
         score.SetText(gameData.score.ToString());
         score.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
     }
+    private void OnIncreaseStar()
+    {
+        starAmountText.SetText(gameData.starAmount.ToString());
+        startStarAmountText.SetText(gameData.starAmount.ToString());
+    }
+
 
     private void OnLevelUIUpdate()
     {

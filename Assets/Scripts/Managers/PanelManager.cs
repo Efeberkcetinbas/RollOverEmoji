@@ -14,11 +14,11 @@ public class PanelManager : MonoBehaviour
     [SerializeField] private Image Fade;
     [SerializeField] private float sceneX,sceneY,oldSceneX,oldSceneY,duration;
 
-    //TEMP. THIS WILL BE REMOVED
-    public GameObject NextButton,RestartButton,StartButton,HelperPanel,OpenButton,CloseButton;
 
-    //
-
+    [Header("Homepage Settings")]
+    [SerializeField] private List<GameObject> homepageElements=new List<GameObject>();
+    [SerializeField] private List<GameObject> stickerElements=new List<GameObject>();
+    [SerializeField] private List<GameObject> customizationElements=new List<GameObject>();
     public GameData gameData;
 
     private WaitForSeconds waitForSeconds,waitforSecondsSpecial;
@@ -29,102 +29,41 @@ public class PanelManager : MonoBehaviour
         waitforSecondsSpecial=new WaitForSeconds(1);
     }
 
-
-
-
-
     private void OnEnable() 
     {
-        /*EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.AddHandler(GameEvent.OnSuccessUI,OnSuccessUI);
-        EventManager.AddHandler(GameEvent.OnGameOver,OnGameOver);
         EventManager.AddHandler(GameEvent.OnFailUI,OnFailUI);
-        EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);*/
-
-        EventManager.AddHandler(GameEvent.OnSuccessUI,OnSuccessUI);
-        EventManager.AddHandler(GameEvent.OnFailUI,OnFailUI);
-        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
+
 
     }
 
 
     private void OnDisable() 
     {
-        /*EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnSuccess,OnSuccess);
         EventManager.RemoveHandler(GameEvent.OnSuccessUI,OnSuccessUI);
-        EventManager.RemoveHandler(GameEvent.OnGameOver,OnGameOver);
         EventManager.RemoveHandler(GameEvent.OnFailUI,OnFailUI);
-        EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);*/
-
-        EventManager.RemoveHandler(GameEvent.OnSuccessUI,OnSuccessUI);
-        EventManager.RemoveHandler(GameEvent.OnFailUI,OnFailUI);
-        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
 
-    }
-    //TEMP!
-    #region TEMP
-    private void OnSuccessUI()
-    {
-        NextButton.SetActive(true);
+
     }
 
-    private void OnFailUI()
-    {
-        RestartButton.SetActive(true);
-    }
 
-    private void OnNextLevel()
-    {
-        NextButton.SetActive(false);
-        StartButton.SetActive(true);
-    }
-
-    private void OnRestartLevel()
-    {
-        RestartButton.SetActive(false);
-        StartButton.SetActive(true);
-    }
-
-    public void StartGame()
-    {
-        StartButton.SetActive(false);
-        gameData.isGameEnd=false;
-        EventManager.Broadcast(GameEvent.OnGameStart);
-        StartCoroutine(GetCanSwipe());
-    }
-
-    public void OpenHelpersPanel()
-    {
-        OpenButton.SetActive(false);
-        HelperPanel.SetActive(true);
-        CloseButton.SetActive(true);        
-    }
-
-    public void CloseHelpersPanel()
-    {
-        OpenButton.SetActive(true);
-        HelperPanel.SetActive(false);
-        CloseButton.SetActive(false);
-    }
-
-    private IEnumerator GetCanSwipe()
-    {
-        yield return new WaitForSeconds(0.1f);
-        gameData.CanSwipe=true;
-    }
-    #endregion
     
-    /*
+
+    
+    
     public void StartGame() 
     {
         gameData.isGameEnd=false;
         StartPanel.gameObject.SetActive(false);
         ScenePanel.gameObject.SetActive(true);
         SetSceneUIPosition(sceneX,sceneY);
+        StartCoroutine(GetCanSwipe());
 
        
         StartCoroutine(SetElementsDotween(SpecialElements));
@@ -132,7 +71,11 @@ public class PanelManager : MonoBehaviour
         
     }
 
-
+    private IEnumerator GetCanSwipe()
+    {
+        yield return new WaitForSeconds(0.1f);
+        gameData.CanSwipe=true;
+    }
     
     private void OnRestartLevel()
     {
@@ -149,8 +92,8 @@ public class PanelManager : MonoBehaviour
         
         SuccessPanel.gameObject.SetActive(false);
         StartCoroutine(Blink(Fade.gameObject,Fade));
-        SetActivity(SceneUIs,true);
-        StartCoroutine(SetElementsDotween(SpecialElements));
+        /*SetActivity(SceneUIs,true);
+        StartCoroutine(SetElementsDotween(SpecialElements));*/
     }
 
    
@@ -161,9 +104,11 @@ public class PanelManager : MonoBehaviour
         gameObject.SetActive(true);
         image.color=new Color(0,0,0,1);
         image.DOFade(0,2f);
+        StartPanel.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
-        SetSceneUIPosition(sceneX,sceneY);
+
+        //SetSceneUIPosition(sceneX,sceneY);
 
     }
 
@@ -203,11 +148,7 @@ public class PanelManager : MonoBehaviour
     }
   
 
-    private void OnGameOver()
-    {
-        SetSceneUIPosition(oldSceneX,oldSceneY);
-        
-    }
+    
 
     private void OnFailUI()
     {
@@ -220,7 +161,46 @@ public class PanelManager : MonoBehaviour
     {
         ScenePanel.DOAnchorPos(new Vector2(valX,valY),duration);
     }
-    */
+    
+    #region Homepage
 
+    
+
+    public void OpenStickers()
+    {
+        SetPage(stickerElements,homepageElements,customizationElements);
+    }
+
+    public void OpenCustomization()
+    {
+        SetPage(customizationElements,homepageElements,stickerElements);
+    }
+
+    public void OpenHomepage()
+    {
+        SetPage(homepageElements,stickerElements,customizationElements);
+    }
+
+    private void SetPage(List<GameObject> selectedPages,List<GameObject> otherPage1,List<GameObject> otherPage2)
+    {
+        for (int i = 0; i < selectedPages.Count; i++)
+        {
+            selectedPages[i].transform.localScale=Vector3.zero;
+            selectedPages[i].SetActive(true);
+            selectedPages[i].transform.DOScale(Vector3.one,0.5f).SetEase(Ease.OutBounce);
+        }
+
+        for (int i = 0; i < otherPage1.Count; i++)
+        {
+            otherPage1[i].SetActive(false);
+        }
+
+        for (int i = 0; i < otherPage2.Count; i++)
+        {
+            otherPage2[i].SetActive(false);
+        }
+    }
+
+    #endregion
 
 }

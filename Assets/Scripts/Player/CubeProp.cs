@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CubeProp : MonoBehaviour
 {
@@ -15,12 +16,15 @@ public class CubeProp : MonoBehaviour
     {
         EventManager.AddHandler(GameEvent.OnMatch, OnMatch);
         EventManager.AddHandler(GameEvent.OnCubeRollingEnd, OnCubeRollingEnd);
+        EventManager.AddHandler(GameEvent.OnCubeRollingStart,OnCubeRollingStart);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnMatch, OnMatch);
         EventManager.RemoveHandler(GameEvent.OnCubeRollingEnd, OnCubeRollingEnd);
+        EventManager.RemoveHandler(GameEvent.OnCubeRollingStart, OnCubeRollingStart);
+
     }
 
     private void OnMatch()
@@ -32,5 +36,13 @@ public class CubeProp : MonoBehaviour
     private void OnCubeRollingEnd()
     {
         rollEndParticle.Play();
+
+    }
+
+    private void OnCubeRollingStart()
+    {
+        transform.DOScale(Vector3.one*0.85f,0.25f).SetEase(Ease.InBounce).OnComplete(()=>{
+            transform.DOScale(Vector3.one,0.25f).SetEase(Ease.OutBounce);
+        });
     }
 }

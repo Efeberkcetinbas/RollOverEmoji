@@ -29,6 +29,10 @@ public enum GameEvent
     OnCollect3Emoji,
     OnRotateVertical,
     OnRotateHorizontal,
+
+    //Star
+    OnIncreaseStar,
+    OnFillStarFull,
     
 
     //Move
