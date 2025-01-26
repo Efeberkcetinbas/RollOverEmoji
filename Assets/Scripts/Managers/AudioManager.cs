@@ -25,6 +25,7 @@ public class AudioClipsPlayer
     public AudioClip Match3Sound;
     public AudioClip CantRollSound;
     public AudioClip StickerSpawnSound;
+    public AudioClip CantCollectSound;
 
 }
 
@@ -77,6 +78,7 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnCollectSticker,OnCollectSticker);
         EventManager.AddHandler(GameEvent.OnPlayerCantRoll,OnPlayerCantRoll);
         EventManager.AddHandler(GameEvent.OnStickerSpawn,OnStickerSpawn);
+        EventManager.AddHandler(GameEvent.OnCantCollect,OnCantCollect);
 
         //BOOSTERS
         EventManager.AddHandler(GameEvent.OnRotateHorizontal,OnRotateHorizontal);
@@ -104,6 +106,7 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnCollectSticker,OnCollectSticker);
         EventManager.RemoveHandler(GameEvent.OnPlayerCantRoll,OnPlayerCantRoll);
         EventManager.RemoveHandler(GameEvent.OnStickerSpawn,OnStickerSpawn);
+        EventManager.RemoveHandler(GameEvent.OnCantCollect,OnCantCollect);
 
         //BOOSTERS
         EventManager.RemoveHandler(GameEvent.OnRotateHorizontal,OnRotateHorizontal);
@@ -193,6 +196,12 @@ public class AudioManager : MonoBehaviour
     {
         effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.StickerSpawnSound);
+    }
+
+    private void OnCantCollect()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsPlayer.CantCollectSound);
     }
 
     #endregion

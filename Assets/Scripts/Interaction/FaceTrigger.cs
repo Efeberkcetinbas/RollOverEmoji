@@ -92,6 +92,12 @@ public class FaceTrigger : Obstacleable
                 StartCoroutine(CheckMatch());
                 Debug.Log($"Assigned {AssignedEmojiType} to face '{gameObject.name}'");
             }
+
+            else
+            {
+                Debug.LogWarning("WARNING WARNING!");
+                EventManager.Broadcast(GameEvent.OnCantCollect);
+            }
         }
         
     }

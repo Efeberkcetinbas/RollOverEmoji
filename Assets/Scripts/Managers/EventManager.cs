@@ -7,7 +7,7 @@ public enum GameEvent
     //Player
     OnCollectSticker,
     OnPlayerCantRoll,
-    
+    OnCantCollect,
     
     //Match3
     OnCheckMatch,
@@ -32,7 +32,6 @@ public enum GameEvent
 
     //Star
     OnIncreaseStar,
-    OnFillStarFull,
     
 
     //Move

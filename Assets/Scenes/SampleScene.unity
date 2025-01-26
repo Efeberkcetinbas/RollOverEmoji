@@ -30458,6 +30458,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba1d3990a98e7864785573c0c3605b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &1639936600 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7988437044958635923, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+  m_PrefabInstance: {fileID: 4498612101722295484}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1646557860
 GameObject:
   m_ObjectHideFlags: 0
@@ -40482,6 +40487,10 @@ PrefabInstance:
       propertyPath: previewSprite
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3516139563984464530, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
+      propertyPath: cubeMesh
+      value: 
+      objectReference: {fileID: 1639936600}
     - target: {fileID: 3516139563984464530, guid: 13ab5bbc560627046affbc0c1b09a14c, type: 3}
       propertyPath: matchParticle
       value: 

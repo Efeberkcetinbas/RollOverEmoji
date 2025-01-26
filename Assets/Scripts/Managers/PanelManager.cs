@@ -152,6 +152,7 @@ public class PanelManager : MonoBehaviour
 
     private void OnFailUI()
     {
+        SetSceneUIPosition(oldSceneX,oldSceneY);
         FailPanel.gameObject.SetActive(true);
         SetActivity(SceneUIs,false);
         StartCoroutine(SetElementsDotween(FailElements));
