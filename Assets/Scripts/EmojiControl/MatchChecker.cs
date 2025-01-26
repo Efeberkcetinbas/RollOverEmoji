@@ -51,7 +51,7 @@ public class MatchChecker : MonoBehaviour
         // Check for matches (3 or more)
         foreach (var match in matches)
         {
-            if (match.Value.Count >= 3)
+            if (match.Value.Count >= gameData.matchNeededNumber)
             {
                 HandleMatch(match.Value); // Handle matched faces
             }
@@ -78,7 +78,7 @@ public class MatchChecker : MonoBehaviour
 
     private void CheckForEmojiNumber()
     {
-        gameData.levelEmojiCount-=3;
+        gameData.levelEmojiCount-=gameData.matchNeededNumber;
         achievementManager.UpdateProgress(achievementData, 1);
         achievementManager.UpdateProgress(completedData, 1);
         if(gameData.levelEmojiCount<=0)
@@ -122,7 +122,7 @@ public class MatchChecker : MonoBehaviour
         foreach (var emojiCount in emojiCounts)
         {
             int totalPossible = emojiCount.Value + emptyFacesCount;
-            if (totalPossible >= 3)
+            if (totalPossible >= gameData.matchNeededNumber)
             {
                 Debug.Log($"Possible to form a match-3 for {emojiCount.Key}");
                 return; // No need to check further, at least one match-3 is possible
@@ -130,7 +130,7 @@ public class MatchChecker : MonoBehaviour
         }
 
         // Also consider if all empty faces could form a match for a single new emoji type
-        if (emptyFacesCount >= 3)
+        if (emptyFacesCount >= gameData.matchNeededNumber)
         {
             Debug.Log("Possible to form a match-3 using all empty faces.");
         }

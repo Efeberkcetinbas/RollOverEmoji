@@ -17,6 +17,10 @@ public class GameData : ScriptableObject
     public int comboCount;
     public int starAmount;
 
+
+    //Collect Need Number
+    public int matchNeededNumber;
+
     //Move
 
     //Set 0 when Restart or NextLevel
