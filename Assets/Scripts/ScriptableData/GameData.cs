@@ -17,6 +17,9 @@ public class GameData : ScriptableObject
     public int comboCount;
     public int starAmount;
 
+    //Life
+    public int lifeTime;
+
 
     //Collect Need Number
     public int matchNeededNumber;

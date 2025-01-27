@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 public class PanelManager : MonoBehaviour
 {
     [SerializeField] private RectTransform StartPanel,ScenePanel,SuccessPanel,FailPanel;
 
     [SerializeField] private List<GameObject> SceneUIs=new List<GameObject>();
-    [SerializeField] private List<GameObject> SuccessElements=new List<GameObject>();
-    [SerializeField] private List<GameObject> FailElements=new List<GameObject>();
+    
     [SerializeField] private List<GameObject> SpecialElements=new List<GameObject>();
     [SerializeField] private Image Fade;
     [SerializeField] private float sceneX,sceneY,oldSceneX,oldSceneY,duration;
+
+    [Header("Game Ending UI")]
+    [SerializeField] private List<GameObject> SuccessElements=new List<GameObject>();
+    [SerializeField] private List<GameObject> FailElements=new List<GameObject>();
+    [SerializeField] private TextMeshProUGUI lifeCreditText;
+    [SerializeField] private TextMeshProUGUI levelText;
 
 
     [Header("Homepage Settings")]
@@ -154,6 +160,8 @@ public class PanelManager : MonoBehaviour
     {
         SetSceneUIPosition(oldSceneX,oldSceneY);
         FailPanel.gameObject.SetActive(true);
+        lifeCreditText.SetText(gameData.lifeTime.ToString());
+        levelText.SetText((gameData.levelNumber+1).ToString());
         SetActivity(SceneUIs,false);
         StartCoroutine(SetElementsDotween(FailElements));
     }

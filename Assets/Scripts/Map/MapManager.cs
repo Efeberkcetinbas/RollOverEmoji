@@ -5,17 +5,20 @@ using UnityEngine;
 public class MapManager : MonoBehaviour
 {
     public List<GameObject> Emojis=new List<GameObject>();
+    internal GameObject temmMap;
     
     [SerializeField] private GeneralBuildingManager generalBuildingManager;
 
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnFail,OnFail);
+        EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnFail,OnFail);
+        EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
     }
 
     private void OnFail()
@@ -35,6 +38,11 @@ public class MapManager : MonoBehaviour
         }
 
         generalBuildingManager.TransferEmojisToBuildings();
+    }
+
+    private void OnNextLevel()
+    {
+        Destroy(temmMap);
     }
 
     

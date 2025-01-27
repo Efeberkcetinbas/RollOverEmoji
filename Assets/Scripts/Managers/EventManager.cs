@@ -32,6 +32,10 @@ public enum GameEvent
 
     //Star
     OnIncreaseStar,
+
+    //Life
+    OnLifeFull,
+    
     
 
     //Move

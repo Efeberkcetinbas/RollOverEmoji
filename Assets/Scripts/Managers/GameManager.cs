@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     {
         ClearData();
         gameData.starAmount=PlayerPrefs.GetInt("Star",0);
+        gameData.matchNeededNumber=3;
 
     }
 

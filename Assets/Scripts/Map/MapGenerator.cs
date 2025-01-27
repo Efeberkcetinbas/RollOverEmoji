@@ -63,6 +63,8 @@ public class MapGenerator : MonoBehaviour
         if (mapParent != null) Destroy(mapParent.gameObject); // Clear old map
         mapParent = new GameObject("Map").transform; // Create new map parent
 
+        mapManager.temmMap=mapParent.gameObject;
+
         groundPositions.Clear();
         obstaclePositions.Clear();
         emojiPositions.Clear();
@@ -293,4 +295,6 @@ public class MapGenerator : MonoBehaviour
             marker.GetComponent<Renderer>().material.color = Color.red;
         }
     }
+
+    
 }

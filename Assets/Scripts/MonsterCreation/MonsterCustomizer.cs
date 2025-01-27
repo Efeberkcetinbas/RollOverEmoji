@@ -35,22 +35,33 @@ public class MonsterCustomizer : MonoBehaviour
 
     private int currentPartIndex = 0;
     private Dictionary<MonsterPartType, int> partIndices = new Dictionary<MonsterPartType, int>();
+    private Dictionary<MonsterPartType, Color> partColors = new Dictionary<MonsterPartType, Color>();
 
     private void Start()
     {
         foreach (var part in monsterParts)
         {
+            // Load saved index and color
             int savedIndex = PlayerPrefs.GetInt(part.Type.ToString(), 0);
             partIndices[part.Type] = savedIndex;
 
+            string savedColor = PlayerPrefs.GetString($"{part.Type}_Color", "#FFFFFF");
+            ColorUtility.TryParseHtmlString(savedColor, out var color);
+            partColors[part.Type] = color;
+
             foreach (var image in part.CurrentPartImages)
-                image.color = Color.white; // Default color
+                image.color = color;
 
             foreach (var image in part.ScenePartImages)
-                image.color = Color.white; // Default color
+                image.color = color;
 
             UpdatePartSprites(part.Type);
         }
+
+        // Load saved eye count
+        int savedEyeCount = PlayerPrefs.GetInt("EyeCount", 1);
+        SetEyeOption(savedEyeCount);
+
         UpdateCurrentPartText();
         UpdateEyeButtons();
     }
@@ -75,10 +86,11 @@ public class MonsterCustomizer : MonoBehaviour
 
     public void ChangePartColor(string colorName)
     {
-        Color color;
-        if (ColorUtility.TryParseHtmlString(colorName, out color))
+        if (ColorUtility.TryParseHtmlString(colorName, out var color))
         {
             var currentPart = monsterParts[currentPartIndex];
+            partColors[currentPart.Type] = color;
+
             foreach (var image in currentPart.CurrentPartImages)
             {
                 image.color = color;
@@ -87,6 +99,9 @@ public class MonsterCustomizer : MonoBehaviour
             {
                 image.color = color;
             }
+
+            PlayerPrefs.SetString($"{currentPart.Type}_Color", colorName);
+            PlayerPrefs.Save();
         }
         else
         {

@@ -14,6 +14,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI starAmountText;
     [SerializeField] private TextMeshProUGUI startStarAmountText;
 
+    [Header("Start Panel")]
+    [SerializeField] private TextMeshProUGUI startScore;
+
 
     [Header("Combo Part")]
     [SerializeField] private TextMeshProUGUI comboText;
@@ -26,6 +29,8 @@ public class UIManager : MonoBehaviour
 
     [Header("DATA'S")]
     public GameData gameData;
+
+   
 
     private void OnEnable()
     {
@@ -65,10 +70,12 @@ public class UIManager : MonoBehaviour
         OnUIUpdate();
         OnMoveUI();
         OnIncreaseStar();
+        OnLevelUIUpdate();
     }
     
     private void OnUIUpdate()
     {
+        startScore.SetText(gameData.score.ToString());
         score.SetText(gameData.score.ToString());
         score.transform.DOScale(new Vector3(1.5f,1.5f,1.5f),0.2f).OnComplete(()=>score.transform.DOScale(new Vector3(1,1f,1f),0.2f));
     }

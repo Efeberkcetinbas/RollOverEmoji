@@ -41,7 +41,13 @@ public class ParticleManager : MonoBehaviour
 
     private void OnNextLevel()
     {
+        for (int i = 0; i < successParticles.Count; i++)
+        {
+            successParticles[i].Stop();
+        }
+        
         OpenClose(false);
+        
     }
 
 }
