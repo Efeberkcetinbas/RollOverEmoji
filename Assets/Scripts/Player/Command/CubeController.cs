@@ -66,6 +66,30 @@ public class CubeController : MonoBehaviour
             }
 
         }
+
+        #region PC
+
+        
+        /*if (Input.GetMouseButtonDown(0))
+        {
+            startedOverUI = EventSystem.current.IsPointerOverGameObject();
+            startTouchPosition = Input.mousePosition; // Mimic touch start position
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (startedOverUI) return;
+
+            Vector2 endTouchPosition = Input.mousePosition; // Mimic touch end position
+            Vector2 swipeDelta = endTouchPosition - startTouchPosition;
+
+            if (swipeDelta.magnitude >= swipeThreshold)
+            {
+                Vector3 direction = GetSwipeDirection(swipeDelta);
+                TryRoll(direction);
+            }
+        }*/
+        #endregion
     }
     
 

@@ -35298,7 +35298,7 @@ MonoBehaviour:
     IncreaseScoreSound: {fileID: 8300000, guid: ded01dfe702d1b742a78512e67630f64, type: 3}
     StickerSound: {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
     Match3Sound: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
-    CantRollSound: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
+    CantRollSound: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
     StickerSpawnSound: {fileID: 8300000, guid: b1164304bac26fc4281548c98d3b3901, type: 3}
     CantCollectSound: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
     StickerStarSound: {fileID: 8300000, guid: 947674d413f24c14695f9d79cf896db1, type: 3}
