@@ -86,7 +86,7 @@ public class UIManager : MonoBehaviour
     private void OnGameStart()
     {
         matchNeededText.transform.localScale=new Vector3(3.5f,3.5f,3.5f);
-        matchNeededText.transform.DOScale(Vector3.one,0.5f).SetEase(Ease.InCirc);
+        matchNeededText.transform.DOScale(Vector3.one,1.5f).SetEase(Ease.InCirc);
     }
     private void OnUIUpdate()
     {

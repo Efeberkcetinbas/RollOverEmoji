@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     private void OnNextLevel()
     {
         ClearData();
+        EventManager.Broadcast(GameEvent.OnMoveUI);
+
         
     }
 
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         ClearData();
         EventManager.Broadcast(GameEvent.OnMoveUI);
+
 
     }
 
