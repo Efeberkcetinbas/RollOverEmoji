@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6d86e9a37d716d4e81debca4ebfdabf, type: 3}
+  m_Name: PlanetMap
+  m_EditorClassIdentifier: 
+  emojis:
+  - emojiPrefab: {fileID: 3456438391525403492, guid: d4c2ca441f40dbc4ab1054bf5d5d6989, type: 3}
+    count: 4
+  - emojiPrefab: {fileID: 3456438391525403492, guid: 9e986d3a515644d4197bf4b61f7960b2, type: 3}
+    count: 4
+  - emojiPrefab: {fileID: 3456438391525403492, guid: c87155ef50c3db04091fb6f7da835fe1, type: 3}
+    count: 4
+  obstacleCount: 0
+  enableDebug: 1
+  matchNumber: 4

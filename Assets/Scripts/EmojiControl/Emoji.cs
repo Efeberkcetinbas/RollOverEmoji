@@ -12,6 +12,16 @@ public enum EmojiType
     Devil,
     Angry,
     Joker,
+    Poo,
+    Pumpkin,
+    Zombie,
+    Skull,
+    Frankeinstein,
+    Mummy,
+    Clown,
+    Love,
+    Vampire,
+
 
     //Animals
 
@@ -20,7 +30,13 @@ public enum EmojiType
     Crocodile,
     Rhino,
     Narnwhal,
-    Chick
+    Chick,
+
+    //Planets
+    Planet1,
+    Planet2,
+    Planet3,
+
     
     
     // Add more types as needed

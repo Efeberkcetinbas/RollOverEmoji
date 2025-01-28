@@ -8,20 +8,22 @@ public class GameManager : MonoBehaviour
     public GameData gameData;
 
 
-    private WaitForSeconds waitForSeconds;
+    private WaitForSeconds waitForSeconds,waitForSecondsFail;
+
+    public int LevelMatchNeededNumber;
 
 
     private void Awake() 
     {
         ClearData();
         gameData.starAmount=PlayerPrefs.GetInt("Star",0);
-        gameData.matchNeededNumber=3;
 
     }
 
     private void Start()
     {
         waitForSeconds=new WaitForSeconds(2);
+        waitForSecondsFail=new WaitForSeconds(1);
     }
 
     private void OnEnable()
@@ -95,7 +97,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator OpenFail()
     {
-        yield return waitForSeconds;
+        yield return waitForSecondsFail;
         OpenFailPanel();
     }
 

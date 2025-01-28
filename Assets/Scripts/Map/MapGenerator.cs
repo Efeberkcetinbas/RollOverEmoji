@@ -28,6 +28,7 @@ public class MapGenerator : MonoBehaviour
     private List<Vector3> unreachablePositions = new List<Vector3>();
 
     private MapManager mapManager;
+    private GameManager gameManager;
 
     //For Restart
     private List<GameObject> tempEmojis=new List<GameObject>();
@@ -35,6 +36,7 @@ public class MapGenerator : MonoBehaviour
     private void Start()
     {
         mapManager=FindObjectOfType<MapManager>();
+        gameManager=FindObjectOfType<GameManager>();
     }
 
     private void OnEnable()
@@ -101,6 +103,10 @@ public class MapGenerator : MonoBehaviour
 
         Debug.Log("Map generation complete.");
         gameData.levelEmojiCount=mapManager.Emojis.Count;
+        gameManager.LevelMatchNeededNumber=mapSettings.matchNumber;
+        gameData.matchNeededNumber=mapSettings.matchNumber;
+        EventManager.Broadcast(GameEvent.OnUpdateNeededMatchUI);
+
         
     }
 

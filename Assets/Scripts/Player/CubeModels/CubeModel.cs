@@ -7,6 +7,7 @@ public enum MapTypes
     EmojiWorld,
     AnimalMap,
     CardMap,
+    PlanetMap,
 }
 
 [Serializable]

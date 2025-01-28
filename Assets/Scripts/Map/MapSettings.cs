@@ -13,6 +13,9 @@ public class MapSettings : ScriptableObject
 
     [Header("Debug Options")]
     public bool enableDebug = true;
+
+    [Header("Match Number")]
+    public int matchNumber;
 }
 
 [System.Serializable]

@@ -13,6 +13,10 @@ public class AudioClipsGameManagement
     public AudioClip NextLevelSound;
     public AudioClip StartSound;
     public AudioClip FailUISound;
+    public AudioClip PanelChangeSound;
+    public AudioClip ChangeMonsterPanelSound;
+    public AudioClip ChangeMonsterPartSound;
+    public AudioClip ChangeMonsterColorSound;
 }
 
 [Serializable]
@@ -26,6 +30,8 @@ public class AudioClipsPlayer
     public AudioClip CantRollSound;
     public AudioClip StickerSpawnSound;
     public AudioClip CantCollectSound;
+    public AudioClip StickerStarSound;
+    public AudioClip UpdateStickerSound;
 
 }
 
@@ -69,6 +75,10 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.AddHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.AddHandler(GameEvent.OnPanelsChange,OnPanelsChange);
+        EventManager.AddHandler(GameEvent.OnChangeMonsterPart,OnChangeMonsterPart);
+        EventManager.AddHandler(GameEvent.OnChangePartSprite,OnChangePartSprite);
+        EventManager.AddHandler(GameEvent.OnChangePartColor,OnChangePartColor);
 
         //PLAYER
         EventManager.AddHandler(GameEvent.OnCubeRollingStart,OnCubeRollingStart);
@@ -79,6 +89,8 @@ public class AudioManager : MonoBehaviour
         EventManager.AddHandler(GameEvent.OnPlayerCantRoll,OnPlayerCantRoll);
         EventManager.AddHandler(GameEvent.OnStickerSpawn,OnStickerSpawn);
         EventManager.AddHandler(GameEvent.OnCantCollect,OnCantCollect);
+        EventManager.AddHandler(GameEvent.OnStickerSound,OnStickerSound);
+        EventManager.AddHandler(GameEvent.OnUpdateSticker,OnUpdateSticker);
 
         //BOOSTERS
         EventManager.AddHandler(GameEvent.OnRotateHorizontal,OnRotateHorizontal);
@@ -97,6 +109,10 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnRestartLevel,OnRestartLevel);
         EventManager.RemoveHandler(GameEvent.OnNextLevel,OnNextLevel);
         EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
+        EventManager.RemoveHandler(GameEvent.OnPanelsChange,OnPanelsChange);
+        EventManager.RemoveHandler(GameEvent.OnChangeMonsterPart,OnChangeMonsterPart);
+        EventManager.RemoveHandler(GameEvent.OnChangePartSprite,OnChangePartSprite);
+        EventManager.RemoveHandler(GameEvent.OnChangePartColor,OnChangePartColor);
 
         //PLAYER
         EventManager.RemoveHandler(GameEvent.OnCubeRollingStart,OnCubeRollingStart);
@@ -107,6 +123,8 @@ public class AudioManager : MonoBehaviour
         EventManager.RemoveHandler(GameEvent.OnPlayerCantRoll,OnPlayerCantRoll);
         EventManager.RemoveHandler(GameEvent.OnStickerSpawn,OnStickerSpawn);
         EventManager.RemoveHandler(GameEvent.OnCantCollect,OnCantCollect);
+        EventManager.RemoveHandler(GameEvent.OnStickerSound,OnStickerSound);
+        EventManager.RemoveHandler(GameEvent.OnUpdateSticker,OnUpdateSticker);
 
         //BOOSTERS
         EventManager.RemoveHandler(GameEvent.OnRotateHorizontal,OnRotateHorizontal);
@@ -148,6 +166,26 @@ public class AudioManager : MonoBehaviour
     private void OnFailUI()
     {
         effectSource.PlayOneShot(audioClipsGameManagement.FailUISound);
+    }
+
+    private void OnPanelsChange()
+    {
+        effectSource.PlayOneShot(audioClipsGameManagement.PanelChangeSound);
+    }
+
+    private void OnChangeMonsterPart()
+    {
+        effectSource.PlayOneShot(audioClipsGameManagement.ChangeMonsterPanelSound);
+    }
+
+    private void OnChangePartSprite()
+    {
+        effectSource.PlayOneShot(audioClipsGameManagement.ChangeMonsterPartSound);
+    }
+
+    private void OnChangePartColor()
+    {
+        effectSource.PlayOneShot(audioClipsGameManagement.ChangeMonsterColorSound);
     }
     
     #endregion
@@ -202,6 +240,18 @@ public class AudioManager : MonoBehaviour
     {
         effectSource.pitch=Random.Range(1,1.5f);
         effectSource.PlayOneShot(audioClipsPlayer.CantCollectSound);
+    }
+
+    private void OnStickerSound()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsPlayer.StickerStarSound);
+    }
+
+    private void OnUpdateSticker()
+    {
+        effectSource.pitch=Random.Range(1,1.5f);
+        effectSource.PlayOneShot(audioClipsPlayer.UpdateStickerSound);
     }
 
     #endregion

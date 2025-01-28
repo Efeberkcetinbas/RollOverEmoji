@@ -10,20 +10,22 @@ public class StickerManager : MonoBehaviour
     [SerializeField] private float unlockInterval = 0.5f; // Time interval between unlocking stickers
     private bool isUnlocking = false;
 
-    private void Start()
+   /* private void Start()
     {
         // Load saved data
         LoadStickers();
-    }
+    }*/
 
     private void OnEnable()
     {
         EventManager.AddHandler(GameEvent.OnCollectSticker,OnCollectSticker);
+        EventManager.AddHandler(GameEvent.OnStickerPanelOpen,LoadStickers);
     }
 
     private void OnDisable()
     {
         EventManager.RemoveHandler(GameEvent.OnCollectSticker,OnCollectSticker);
+        EventManager.RemoveHandler(GameEvent.OnStickerPanelOpen,LoadStickers);
     }
 
     private void OnCollectSticker()
@@ -60,6 +62,7 @@ public class StickerManager : MonoBehaviour
                 {
                     // Fully unlock the sticker
                     gameData.starAmount -= starsNeeded;
+                    PlayerPrefs.SetInt("Star",gameData.starAmount);
                     sticker.percentOpen = 100;
                 }
                 else
@@ -68,10 +71,12 @@ public class StickerManager : MonoBehaviour
                     float addedPercent = (gameData.starAmount / (float)sticker.requiredStars) * 100;
                     sticker.percentOpen += addedPercent;
                     gameData.starAmount = 0;
+                    PlayerPrefs.SetInt("Star",gameData.starAmount);
                 }
 
                 // Update the UI incrementally during unlocking
                 EventManager.Broadcast(GameEvent.OnIncreaseStar);
+                EventManager.Broadcast(GameEvent.OnStickerSound);
                 sticker.UpdateStickerUI();
                 // Wait for the specified interval before processing the next sticker
                 yield return new WaitForSeconds(unlockInterval);

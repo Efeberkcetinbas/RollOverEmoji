@@ -71,6 +71,7 @@ public class MonsterCustomizer : MonoBehaviour
         currentPartIndex = (currentPartIndex + (isNext ? 1 : -1) + monsterParts.Count) % monsterParts.Count;
         UpdateCurrentPartText();
         UpdateEyeButtons();
+        EventManager.Broadcast(GameEvent.OnChangeMonsterPart);
     }
 
     public void ChangePartSprite(bool isNext)
@@ -82,6 +83,8 @@ public class MonsterCustomizer : MonoBehaviour
         PlayerPrefs.Save();
 
         UpdatePartSprites(currentPart.Type);
+
+        EventManager.Broadcast(GameEvent.OnChangePartSprite);
     }
 
     public void ChangePartColor(string colorName)
@@ -101,7 +104,8 @@ public class MonsterCustomizer : MonoBehaviour
             }
 
             PlayerPrefs.SetString($"{currentPart.Type}_Color", colorName);
-            PlayerPrefs.Save();
+            PlayerPrefs.Save(); 
+            EventManager.Broadcast(GameEvent.OnChangePartColor);
         }
         else
         {
@@ -126,6 +130,7 @@ public class MonsterCustomizer : MonoBehaviour
             eyePart.ScenePartImages[i].gameObject.SetActive(isActive);
         }
 
+        EventManager.Broadcast(GameEvent.OnChangeMonsterPart);
         PlayerPrefs.SetInt("EyeCount", eyeCount);
         PlayerPrefs.Save();
     }

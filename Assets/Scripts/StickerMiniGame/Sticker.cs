@@ -24,6 +24,12 @@ public class Sticker : MonoBehaviour
         {
             initialPercent = value;
             stickerImage.fillAmount = value / 100f; // Update the image fill amount
+            
+            /*if(!isFullyOpened) 
+            {
+                EventManager.Broadcast(GameEvent.OnUpdateSticker);
+            }*/
+            
             stickerText.SetText($"{Mathf.FloorToInt(value)} %"); // Update the text percentage
         }, targetPercent, 1f).OnComplete(() =>
         {

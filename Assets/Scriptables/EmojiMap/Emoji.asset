@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emojis:
   - emojiPrefab: {fileID: 7446708597073614335, guid: 92f9ee47ab118084d8233ea28085a49b, type: 3}
-    count: 3
+    count: 2
   - emojiPrefab: {fileID: 7354043164822717751, guid: 9a1129c0c30894b4a9a35ff5fba75f77, type: 3}
-    count: 3
+    count: 4
   - emojiPrefab: {fileID: 3456438391525403492, guid: a7ab5669d93fa054d96c6c37fff4ebcd, type: 3}
-    count: 3
+    count: 2
   - emojiPrefab: {fileID: 3456438391525403492, guid: 47b20d4bfc3cb2640b8e35d4be603795, type: 3}
-    count: 3
+    count: 2
   - emojiPrefab: {fileID: 3456438391525403492, guid: 476b92c92795a5243b49127871ec7780, type: 3}
-    count: 3
+    count: 2
   obstacleCount: 1
   enableDebug: 1
+  matchNumber: 2

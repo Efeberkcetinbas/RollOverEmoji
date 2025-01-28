@@ -161,7 +161,7 @@ public class PanelManager : MonoBehaviour
         SetSceneUIPosition(oldSceneX,oldSceneY);
         FailPanel.gameObject.SetActive(true);
         lifeCreditText.SetText(gameData.lifeTime.ToString());
-        levelText.SetText((gameData.levelNumber+1).ToString());
+        levelText.SetText("Level " + (gameData.levelNumber+1).ToString());
         SetActivity(SceneUIs,false);
         StartCoroutine(SetElementsDotween(FailElements));
     }
@@ -178,6 +178,7 @@ public class PanelManager : MonoBehaviour
     public void OpenStickers()
     {
         SetPage(stickerElements,homepageElements,customizationElements);
+        EventManager.Broadcast(GameEvent.OnStickerPanelOpen);
     }
 
     public void OpenCustomization()
@@ -208,6 +209,8 @@ public class PanelManager : MonoBehaviour
         {
             otherPage2[i].SetActive(false);
         }
+
+        EventManager.Broadcast(GameEvent.OnPanelsChange);
     }
 
     #endregion

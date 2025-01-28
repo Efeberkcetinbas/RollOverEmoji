@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [Header("Scene Texts")]
     [SerializeField] private TextMeshProUGUI score;
     [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI matchNeededText;
     [Header("Star")]
     [SerializeField] private TextMeshProUGUI starAmountText;
     [SerializeField] private TextMeshProUGUI startStarAmountText;
@@ -47,6 +48,10 @@ public class UIManager : MonoBehaviour
         //Combo
         EventManager.AddHandler(GameEvent.OnComboProgress,OnComboProgress);
         EventManager.AddHandler(GameEvent.OnComboUIUpdate,OnComboUIUpdate);
+
+        //Match Needed
+        EventManager.AddHandler(GameEvent.OnUpdateNeededMatchUI,OnUpdateNeededMatchUI);
+        EventManager.AddHandler(GameEvent.OnGameStart,OnGameStart);
         
         
     }
@@ -63,6 +68,10 @@ public class UIManager : MonoBehaviour
          //Combo
         EventManager.RemoveHandler(GameEvent.OnComboProgress,OnComboProgress);
         EventManager.RemoveHandler(GameEvent.OnComboUIUpdate,OnComboUIUpdate);
+
+        //Match Needed
+        EventManager.RemoveHandler(GameEvent.OnUpdateNeededMatchUI,OnUpdateNeededMatchUI);
+        EventManager.RemoveHandler(GameEvent.OnGameStart,OnGameStart);
     }
 
     private void Start()
@@ -73,6 +82,12 @@ public class UIManager : MonoBehaviour
         OnLevelUIUpdate();
     }
     
+
+    private void OnGameStart()
+    {
+        matchNeededText.transform.localScale=new Vector3(3.5f,3.5f,3.5f);
+        matchNeededText.transform.DOScale(Vector3.one,0.5f).SetEase(Ease.InCirc);
+    }
     private void OnUIUpdate()
     {
         startScore.SetText(gameData.score.ToString());
@@ -83,6 +98,11 @@ public class UIManager : MonoBehaviour
     {
         starAmountText.SetText(gameData.starAmount.ToString());
         startStarAmountText.SetText(gameData.starAmount.ToString());
+    }
+
+    private void OnUpdateNeededMatchUI()
+    {
+        matchNeededText.SetText(gameData.matchNeededNumber.ToString());
     }
 
 

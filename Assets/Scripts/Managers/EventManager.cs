@@ -12,6 +12,7 @@ public enum GameEvent
     //Match3
     OnCheckMatch,
     OnMatch,
+    OnUpdateNeededMatchUI,
 
     //Level
     OnUpdateMapType,
@@ -22,6 +23,7 @@ public enum GameEvent
 
     //Sticker
     OnStickerSpawn,
+    OnStickerPanelOpen,
 
     //Helper
     OnCheckHelpers,
@@ -32,6 +34,14 @@ public enum GameEvent
 
     //Star
     OnIncreaseStar,
+    OnUpdateSticker,
+    OnStickerSound,
+
+    //Monster
+    OnChangeMonsterPart,
+    OnChangePartSprite,
+    OnChangePartColor,
+    
 
     //Life
     OnLifeFull,
@@ -62,6 +72,7 @@ public enum GameEvent
     OnSuccessUI,
     OnFailUI,
     OnRestartLevel,
+    OnPanelsChange,
 
 }
 public class EventManager
